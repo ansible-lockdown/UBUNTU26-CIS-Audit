@@ -5,7 +5,7 @@
 command:
   audit_tools_owner:
     title: 6.2.4.9 | Ensure audit tools owner is configured
-    exec: stat -c "%n_%U" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules
+    exec: for f in /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules; do [ -e "$f" ] && stat -c "%n_%U" "$f"; done; true
     exit-status: 0
     stdout:
     - '/.*_root$/'

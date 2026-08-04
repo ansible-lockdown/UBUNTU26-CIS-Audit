@@ -5,7 +5,7 @@
 command:
   audit_tools_perms:
     title: 6.2.4.8 | Ensure audit tools mode is configured
-    exec: stat -c "%n_%a" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules
+    exec: for f in /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules; do [ -e "$f" ] && stat -c "%n_%a" "$f"; done; true
     exit-status: 0
     stdout:
     - '/.*_7(0|5)(0|5)$/'

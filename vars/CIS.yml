@@ -626,6 +626,7 @@ ubtu26cis_time_sync_tool: "chrony"
 # of the time synchronization mechanism you are using.
 ubtu26cis_time_pool:
   - name: time.nist.gov
+    options: iburst maxsources 4
 
 # The following variable represents a list of of time servers used
 # for configuring chrony and timesyncd
@@ -658,7 +659,7 @@ ubtu26cis_bluetooth_mask: false
 ## Control 3.3.x - Networking configuration
 # This variable contains the path to the file in which, sysctl saves its configurations.
 # Its default value is `/etc/sysctl.conf`.
-ubtu26cis_sysctl_network_conf: /etc/sysctl.conf
+ubtu26cis_sysctl_network_conf: /etc/sysctl.d/97_cis_network.conf
 
 #
 ### Section 4 - Host Based Firewall (UFW only)
