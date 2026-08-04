@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.ubtu26cis_level_2 }}
+  {{ if .Vars.ubtu26cis_rule_6_2_3_16 }}
+command:
+  auditd_16_config:
+    title: 6.2.3.16 | Ensure events that modify /etc/nsswitch.conf file are collected | Config
+    exec: grep identity /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '-w /etc/nsswitch.conf -p wa -k identity'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.16
+      NIST800-53R5:
+      - AU-3
+  {{ end }}
+{{ end }}

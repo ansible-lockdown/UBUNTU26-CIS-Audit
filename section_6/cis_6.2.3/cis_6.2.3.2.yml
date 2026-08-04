@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.ubtu26cis_level_2 }}
+  {{ if .Vars.ubtu26cis_rule_6_2_3_2 }}
+command:
+  auditd_2_config:
+    title: 6.2.3.2 | Ensure actions as another user are always logged | Config
+    exec: grep user_emulation /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '-a always,exit -F arch=b64 -C euid!=uid -F auid!=unset -S execve -k user_emulation'
+    - '-a always,exit -F arch=b32 -C euid!=uid -F auid!=unset -S execve -k user_emulation'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.2
+      NIST800-53R5:
+      - AU-3
+  {{ end }}
+{{ end }}

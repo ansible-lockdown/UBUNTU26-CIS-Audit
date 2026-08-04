@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.ubtu26cis_level_2 }}
+{{ if not .Vars.ubtu26cis_apparmor_disable }}
+  {{ if .Vars.ubtu26cis_rule_1_3_1_3 }}
+command:
+  apparmor_profiles_enforcing:
+    title: 1.3.1.3 | Ensure all AppArmor Profiles are enforcing
+    # Every loaded profile must be in enforce mode: enforce count equals loaded
+    # count and nothing is left in complain mode.
+    exec: LOADED=`apparmor_status | grep 'profiles are loaded' | awk '{print $1}'` && ENFORCE=`apparmor_status | grep 'profiles are in enforce mode' | awk '{print $1}'` && COMPLAIN=`apparmor_status | grep 'profiles are in complain mode' | awk '{print $1}'` && if [ "$ENFORCE" != "$LOADED" ] || [ "$COMPLAIN" != "0" ]; then echo "Not Enforcing"; fi
+    exit-status: 0
+    stdout:
+    - '!/Not Enforcing/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 1.3.1.3
+      NIST800-53R5: AC-3
+  {{ end }}
+  {{ end }}
+{{ end }}

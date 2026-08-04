@@ -1,0 +1,27 @@
+---
+
+{{ if .Vars.ubtu26cis_level_1 }}
+  {{ if .Vars.ubtu26cis_rule_1_5_4 }}
+kernel-param:
+  fs.suid_dumpable:
+    title: 1.5.4 | Ensure fs.suid_dumpable is configured | kernel_sysctl
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 1.5.4
+      NIST800-53R5: CM-6
+command:
+  suid_dumpable_configured:
+    title: 1.5.4 | Ensure fs.suid_dumpable is configured | sysctl.conf
+    exit-status: 0
+    exec: 'grep "fs\.suid_dumpable" /etc/sysctl.conf /etc/sysctl.d/*'
+    stdout:
+    - fs.suid_dumpable=0
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 1.5.4
+      NIST800-53R5: CM-6
+  {{ end }}
+{{ end }}

@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.ubtu26cis_level_2 }}
+  {{ if .Vars.ubtu26cis_rule_6_2_3_33 }}
+command:
+  auditd_33_config:
+    title: 6.2.3.33 | Ensure kernel "delete_module" loading unloading and modification is collected | Config
+    exec: grep kernel_modules /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '-a always,exit -F arch=b64 -S delete_module -F auid>=1000 -F auid!=-1 -k kernel_modules'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.33
+      NIST800-53R5:
+      - AU-3
+  {{ end }}
+{{ end }}

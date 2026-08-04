@@ -1,0 +1,27 @@
+---
+
+
+{{ if .Vars.ubtu26cis_level_1 }}
+  {{ if .Vars.ubtu26cis_rule_5_4_2_6 }}
+command:
+  root_umask_bash_profile:
+    title: 5.4.2.6 | Ensure root user umask is configured
+    exec: grep -i umask /root/.bash_profile /root/bashrc
+    exit-status:
+     or:
+      - 0
+      - 1
+      - 2
+    stdout:
+      - '/umask 00(2|7)7/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.4.2.6
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+  {{ end }}
+{{ end }}
+

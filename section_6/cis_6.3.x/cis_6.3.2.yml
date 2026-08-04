@@ -1,0 +1,53 @@
+---
+
+{{ if .Vars.ubtu26cis_level_1 }}
+  {{ if .Vars.ubtu26cis_config_aide }}
+    {{ if .Vars.ubtu26cis_rule_6_3_2 }}
+      {{ if eq .Vars.ubtu26cis_aide_scan "cron" }}
+command:
+  aide_cron:
+    title: 6.3.2 | Ensure filesystem integrity is regularly checked | aide cron
+    exit-status:
+      or:
+      - 0
+      - 2
+    exec: "grep -rs aide /etc/cron.* /etc/crontab /var/spool/cron/*"
+    stdout:
+    - '!/^#/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.3.2
+      NIST800-53R5: NA
+      {{ end }}
+service:
+    {{ if eq .Vars.ubtu26cis_aide_scan "timer" }}
+  aidecheck:
+    title: 6.3.2 | Ensure filesystem integrity is regularly checked | aidecheck service
+    name: dailyaidecheck.service
+    enabled: true
+    running: true
+    skip: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.3.2
+      NIST800-53R5: NA
+  aidecheck.timer:
+    title: 6.3.2 | Ensure filesystem integrity is regularly checked | aidecheck timer
+    name: dailyaidecheck.timer
+    enabled: true
+    running: true
+    skip: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.3.2
+      NIST800-53R5: NA
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}

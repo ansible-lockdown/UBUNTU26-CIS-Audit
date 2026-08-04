@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.ubtu26cis_level_2 }}
+  {{ if .Vars.ubtu26cis_rule_6_2_3_15 }}
+command:
+  auditd_15_config:
+    title: 6.2.3.15 | Ensure events that modify /etc/security/opasswd are collected | Config
+    exec: grep identity /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '-w /etc/security/opasswd -p wa -k identity'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.15
+      NIST800-53R5:
+      - AU-3
+  {{ end }}
+{{ end }}

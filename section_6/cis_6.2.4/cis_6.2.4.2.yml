@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.ubtu26cis_level_2 }}
+  {{ if .Vars.ubtu26cis_rule_6_2_4_2 }}
+command:
+  audit_logfile_owner:
+    title: 6.2.4.2 | Ensure audit log files owner is configured
+    exec: find "$(grep ^log_file /etc/audit/auditd.conf | awk '{ print $NF }' | xargs dirname)"  -type f ! -user root
+    exit-status: 0
+    stdout:
+    - '!/.*/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.4.2
+      NIST800-53R5:
+      - AU-3
+  {{ end }}
+{{ end }}

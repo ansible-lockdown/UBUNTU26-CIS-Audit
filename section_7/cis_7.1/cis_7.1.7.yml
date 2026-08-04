@@ -1,0 +1,29 @@
+---
+
+{{ if .Vars.ubtu26cis_level_1 }}
+  {{ if .Vars.ubtu26cis_rule_7_1_7 }}
+file:
+  gshadow_perms:
+    title: 7.1.7 | Ensure access to /etc/gshadow is configured
+    path: /etc/gshadow
+    exists: true
+    owner: root
+    group:
+      or:
+      - root
+      - shadow
+    mode:
+      or:
+      - "0640"
+      - "0600"
+      - "0400"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 7.1.7
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+  {{ end }}
+{{ end }}

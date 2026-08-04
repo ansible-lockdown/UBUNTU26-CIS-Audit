@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.ubtu26cis_level_2 }}
+  {{ if .Vars.ubtu26cis_desktop_required }}
+    {{ if .Vars.ubtu26cis_rule_1_7_7 }}
+file:
+  gdm_xwayland:
+    title: 1.7.7 | Ensure Xwayland is configured
+    path: /etc/gdm3/custom.conf
+    exists: true
+    contents:
+    - '/^WaylandEnable=false/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 1.7.7
+      NIST800-53R5: CM-7
+    {{ end }}
+  {{ end }}
+{{ end }}

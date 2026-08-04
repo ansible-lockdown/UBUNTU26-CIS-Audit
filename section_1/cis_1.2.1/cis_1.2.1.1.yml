@@ -1,0 +1,18 @@
+---
+
+{{ if .Vars.ubtu26cis_level_1 }}
+  {{ if .Vars.ubtu26cis_rule_1_2_1_1 }}
+command:
+  apt_signed_by:
+    title: 1.2.1.1 | Ensure the source.list and .source files use the Signed-By option | Manual
+    exit-status: 0
+    exec: echo "MANUAL - Please check manually that sources use the Signed-By option"
+    stdout:
+    - '!/^MANUAL.*/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 1.2.1.1
+      NIST800-53R5: SI-2
+  {{ end }}
+{{ end }}

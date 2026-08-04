@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.ubtu26cis_level_2 }}
+  {{ if .Vars.ubtu26cis_rule_6_2_3_29 }}
+command:
+  auditd_29_config:
+    title: 6.2.3.29 | Ensure successful and unsuccessful attempts to use the chacl command are collected | Config
+    exec: grep perm_chng /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '-a always,exit -F path=/usr/bin/chacl -F perm=x -F auid>=1000 -F auid!=-1 -k perm_chng'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.29
+      NIST800-53R5:
+      - AU-3
+  {{ end }}
+{{ end }}

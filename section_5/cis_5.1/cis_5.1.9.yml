@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.ubtu26cis_level_2 }}
+  {{ if .Vars.ubtu26cis_rule_5_1_9 }}
+file:
+  sshd_disableforwarding:
+    title: 5.1.9 | Ensure sshd DisableForwarding is enabled
+    path: /etc/ssh/sshd_config
+    exists: true
+    contents:
+    - 'DisableForwarding yes'
+    - '!/^DisableForwarding no/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 5.1.9
+      NIST800-53R5:
+      - CM-7
+  {{ end }}
+{{ end }}

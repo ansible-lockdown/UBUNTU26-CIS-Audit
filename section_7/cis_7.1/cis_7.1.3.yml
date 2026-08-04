@@ -1,0 +1,28 @@
+---
+
+{{ if .Vars.ubtu26cis_level_1 }}
+  {{ if .Vars.ubtu26cis_rule_7_1_3 }}
+file:
+  group_perms:
+    title: 7.1.3 | Ensure access to /etc/group is configured
+    path: /etc/group
+    exists: true
+    owner: root
+    group: root
+    mode:
+      or:
+      - "0644"
+      - "0640"
+      - "0604"
+      - "0600"
+      - "0400"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 7.1.3
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+  {{ end }}
+{{ end }}

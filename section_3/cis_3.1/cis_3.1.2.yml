@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.ubtu26cis_level_1 }}
+  {{ if .Vars.ubtu26cis_rule_3_1_2 }}
+command:
+  wireless_disabled:
+    title: 3.1.2 | Ensure wireless interfaces are not available | MANUAL
+    exit-status: 0
+    exec: "if [ $(find /sys/class/net/*/ -type d -name wireless) ]; then echo MANUAL; else echo OK; fi"
+    stdout:
+    - '/^OK/'
+    - '!/^MANUAL/'
+    meta:
+      server: 1
+      workstation: 2
+      CIS_ID:
+      - 3.1.2
+      NIST800-53R5:
+      - CM-7
+  {{ end }}
+{{ end }}

@@ -1,0 +1,716 @@
+---
+
+## metadata for Audit benchmark
+benchmark_version: 'v1.0.0'
+
+
+#  timeout for each command to run where set - default = 10seconds/10000ms
+timeout_ms: 120000
+
+ubtu26cis_section1: true
+ubtu26cis_section2: true
+ubtu26cis_section3: true
+ubtu26cis_section4: true
+ubtu26cis_section5: true
+ubtu26cis_section6: true
+ubtu26cis_section7: true
+
+ubtu26cis_level_1: true
+ubtu26cis_level_2: true
+
+
+#  to enable rules that may have IO impact on a system e.g. full filesystem scans or CPU heavy
+run_heavy_tests: true
+
+#  True is BIOS based system else set to false
+ubtu26cis_legacy_boot: true
+
+##
+## Rule-specific switches
+##
+## Use the switches below to disable specific rules independently of the chosen profile
+##
+
+## Section 1 Fixes
+# Section 1 is Initial setup (FileSystem Configuration, Configure Software Updates, Filesystem Integrity Checking, Secure Boot Settings,
+# Additional Process Hardening, Mandatory Access Control, Command Line Warning Banners, and GNOME Display Manager)
+
+# 1.1 Filesystems
+# 1.1.1 Configure Filesystem Kernel Modules
+ubtu26cis_rule_1_1_1_1: true
+ubtu26cis_rule_1_1_1_2: true
+ubtu26cis_rule_1_1_1_3: true
+ubtu26cis_rule_1_1_1_4: true
+ubtu26cis_rule_1_1_1_5: true
+ubtu26cis_rule_1_1_1_6: true
+ubtu26cis_rule_1_1_1_7: true
+ubtu26cis_rule_1_1_1_8: true
+ubtu26cis_rule_1_1_1_9: true
+ubtu26cis_rule_1_1_1_10: true
+ubtu26cis_rule_1_1_1_11: true
+
+# 1.1.2 Configure Filesystem Partitions
+# /tmp
+ubtu26cis_rule_1_1_2_1_1: true
+ubtu26cis_rule_1_1_2_1_2: true
+ubtu26cis_rule_1_1_2_1_3: true
+ubtu26cis_rule_1_1_2_1_4: true
+
+# /dev/shm
+ubtu26cis_rule_1_1_2_2_1: true
+ubtu26cis_rule_1_1_2_2_2: true
+ubtu26cis_rule_1_1_2_2_3: true
+ubtu26cis_rule_1_1_2_2_4: true
+
+# /home
+ubtu26cis_rule_1_1_2_3_1: true
+ubtu26cis_rule_1_1_2_3_2: true
+ubtu26cis_rule_1_1_2_3_3: true
+
+# /var
+ubtu26cis_rule_1_1_2_4_1: true
+ubtu26cis_rule_1_1_2_4_2: true
+ubtu26cis_rule_1_1_2_4_3: true
+
+# /var/tmp
+ubtu26cis_rule_1_1_2_5_1: true
+ubtu26cis_rule_1_1_2_5_2: true
+ubtu26cis_rule_1_1_2_5_3: true
+ubtu26cis_rule_1_1_2_5_4: true
+
+# /var/log
+ubtu26cis_rule_1_1_2_6_1: true
+ubtu26cis_rule_1_1_2_6_2: true
+ubtu26cis_rule_1_1_2_6_3: true
+ubtu26cis_rule_1_1_2_6_4: true
+
+# /var/log/audit
+ubtu26cis_rule_1_1_2_7_1: true
+ubtu26cis_rule_1_1_2_7_2: true
+ubtu26cis_rule_1_1_2_7_3: true
+ubtu26cis_rule_1_1_2_7_4: true
+
+# 1.2 Package mgmt
+# 1.2.1 Configure Package repositories
+ubtu26cis_rule_1_2_1_1: true
+ubtu26cis_rule_1_2_1_2: true
+ubtu26cis_rule_1_2_1_3: true
+ubtu26cis_rule_1_2_1_4: true
+ubtu26cis_rule_1_2_1_5: true
+ubtu26cis_rule_1_2_1_6: true
+ubtu26cis_rule_1_2_1_7: true
+ubtu26cis_rule_1_2_1_8: true
+ubtu26cis_rule_1_2_1_9: true
+ubtu26cis_rule_1_2_1_10: true
+ubtu26cis_rule_1_2_1_11: true
+ubtu26cis_rule_1_2_1_12: true
+ubtu26cis_rule_1_2_1_13: true
+ubtu26cis_rule_1_2_1_14: true
+ubtu26cis_rule_1_2_1_15: true
+# 1.2.2 Configure Package updates
+ubtu26cis_rule_1_2_2_1: true
+
+# 1.3 Mandatory Access Control
+## 1.3.1 Configure AppArmor
+ubtu26cis_rule_1_3_1_1: true
+ubtu26cis_rule_1_3_1_2: true
+ubtu26cis_rule_1_3_1_3: true
+ubtu26cis_rule_1_3_1_4: true
+
+# 1.4 Configure Bootloader
+ubtu26cis_rule_1_4_1: true
+ubtu26cis_rule_1_4_2: true
+
+# 1.5 Configure additional Process Hardening
+ubtu26cis_rule_1_5_1: true
+ubtu26cis_rule_1_5_2: true
+ubtu26cis_rule_1_5_3: true
+ubtu26cis_rule_1_5_4: true
+ubtu26cis_rule_1_5_5: true
+ubtu26cis_rule_1_5_6: true
+ubtu26cis_rule_1_5_7: true
+ubtu26cis_rule_1_5_8: true
+ubtu26cis_rule_1_5_9: true
+ubtu26cis_rule_1_5_10: true
+ubtu26cis_rule_1_5_11: true
+ubtu26cis_rule_1_5_12: true
+
+# 1.6 Configure Command Line Warning Banners
+ubtu26cis_rule_1_6_1: true
+ubtu26cis_rule_1_6_2: true
+ubtu26cis_rule_1_6_3: true
+ubtu26cis_rule_1_6_4: true
+ubtu26cis_rule_1_6_5: true
+ubtu26cis_rule_1_6_6: true
+ubtu26cis_rule_1_6_7: true
+ubtu26cis_rule_1_6_8: true
+ubtu26cis_rule_1_6_9: true
+ubtu26cis_rule_1_6_10: true
+ubtu26cis_rule_1_6_11: true
+ubtu26cis_rule_1_6_12: true
+
+# 1.7 Configure GNOME Display Manager
+ubtu26cis_rule_1_7_1: true
+ubtu26cis_rule_1_7_2: true
+ubtu26cis_rule_1_7_3: true
+ubtu26cis_rule_1_7_4: true
+ubtu26cis_rule_1_7_5: true
+ubtu26cis_rule_1_7_6: true
+ubtu26cis_rule_1_7_7: true
+
+## Section 2 Fixes
+# Section 2 is Services (Special Purpose Services, and service clients)
+
+# 2.1 Configure Server Services
+ubtu26cis_rule_2_1_1: true
+ubtu26cis_rule_2_1_2: true
+ubtu26cis_rule_2_1_3: true
+ubtu26cis_rule_2_1_4: true
+ubtu26cis_rule_2_1_5: true
+ubtu26cis_rule_2_1_6: true
+ubtu26cis_rule_2_1_7: true
+ubtu26cis_rule_2_1_8: true
+ubtu26cis_rule_2_1_9: true
+ubtu26cis_rule_2_1_10: true
+ubtu26cis_rule_2_1_11: true
+ubtu26cis_rule_2_1_12: true
+ubtu26cis_rule_2_1_13: true
+ubtu26cis_rule_2_1_14: true
+ubtu26cis_rule_2_1_15: true
+ubtu26cis_rule_2_1_16: true
+ubtu26cis_rule_2_1_17: true
+ubtu26cis_rule_2_1_18: true
+ubtu26cis_rule_2_1_19: true
+ubtu26cis_rule_2_1_20: true
+ubtu26cis_rule_2_1_21: true
+ubtu26cis_rule_2_1_22: true
+ubtu26cis_rule_2_1_23: true
+
+# 2.2 Configure client services
+ubtu26cis_rule_2_2_1: true
+ubtu26cis_rule_2_2_2: true
+ubtu26cis_rule_2_2_3: true
+ubtu26cis_rule_2_2_4: true
+ubtu26cis_rule_2_2_5: true
+ubtu26cis_rule_2_2_6: true
+
+# Ensure time synchronization is in use
+ubtu26cis_rule_2_3_1_1: true
+# Configure systemd-timesyncd
+ubtu26cis_rule_2_3_2_1: true
+ubtu26cis_rule_2_3_2_2: true
+# Configure Chrony
+ubtu26cis_rule_2_3_3_1: true
+ubtu26cis_rule_2_3_3_2: true
+ubtu26cis_rule_2_3_3_3: true
+
+# 2.4 Job Schedulers
+# 2.4.1 Configure Cron
+ubtu26cis_rule_2_4_1_1: true
+ubtu26cis_rule_2_4_1_2: true
+ubtu26cis_rule_2_4_1_3: true
+ubtu26cis_rule_2_4_1_4: true
+ubtu26cis_rule_2_4_1_5: true
+ubtu26cis_rule_2_4_1_6: true
+ubtu26cis_rule_2_4_1_7: true
+ubtu26cis_rule_2_4_1_8: true
+ubtu26cis_rule_2_4_1_9: true
+# Configure At
+ubtu26cis_rule_2_4_2_1: true
+
+## Section 3 Network Configuration
+# 3.1 Configure Network Devices
+ubtu26cis_rule_3_1_1: true
+ubtu26cis_rule_3_1_2: true
+ubtu26cis_rule_3_1_3: true
+# 3.2 Configure Network Kernel Modules (Host Only)
+ubtu26cis_rule_3_2_1: true
+ubtu26cis_rule_3_2_2: true
+ubtu26cis_rule_3_2_3: true
+ubtu26cis_rule_3_2_4: true
+ubtu26cis_rule_3_2_5: true
+ubtu26cis_rule_3_2_6: true
+ubtu26cis_rule_3_2_7: true
+# 3.3.1 Configure IPv4 Network Kernel Parameters (Host and Router)
+ubtu26cis_rule_3_3_1_1: true
+ubtu26cis_rule_3_3_1_2: true
+ubtu26cis_rule_3_3_1_3: true
+ubtu26cis_rule_3_3_1_4: true
+ubtu26cis_rule_3_3_1_5: true
+ubtu26cis_rule_3_3_1_6: true
+ubtu26cis_rule_3_3_1_7: true
+ubtu26cis_rule_3_3_1_8: true
+ubtu26cis_rule_3_3_1_9: true
+ubtu26cis_rule_3_3_1_10: true
+ubtu26cis_rule_3_3_1_11: true
+ubtu26cis_rule_3_3_1_12: true
+ubtu26cis_rule_3_3_1_13: true
+ubtu26cis_rule_3_3_1_14: true
+ubtu26cis_rule_3_3_1_15: true
+ubtu26cis_rule_3_3_1_16: true
+ubtu26cis_rule_3_3_1_17: true
+ubtu26cis_rule_3_3_1_18: true
+ubtu26cis_rule_3_3_1_19: true
+# 3.3.2 Configure IPv6 Network Kernel Parameters (Host and Router)
+ubtu26cis_rule_3_3_2_1: true
+ubtu26cis_rule_3_3_2_2: true
+ubtu26cis_rule_3_3_2_3: true
+ubtu26cis_rule_3_3_2_4: true
+ubtu26cis_rule_3_3_2_5: true
+ubtu26cis_rule_3_3_2_6: true
+ubtu26cis_rule_3_3_2_7: true
+ubtu26cis_rule_3_3_2_8: true
+
+## Section 4 Host Based Firewall (UFW only)
+
+ubtu26cis_rule_4_1_1: true
+ubtu26cis_rule_4_1_2: true
+ubtu26cis_rule_4_1_3: true
+ubtu26cis_rule_4_1_4: true
+ubtu26cis_rule_4_1_5: true
+
+## Section 5 Access Control
+# 5.1 Configure SSH Server
+ubtu26cis_rule_5_1_1: true
+ubtu26cis_rule_5_1_2: true
+ubtu26cis_rule_5_1_3: true
+ubtu26cis_rule_5_1_4: true
+ubtu26cis_rule_5_1_5: true
+ubtu26cis_rule_5_1_6: true
+ubtu26cis_rule_5_1_7: true
+ubtu26cis_rule_5_1_8: true
+ubtu26cis_rule_5_1_9: true
+ubtu26cis_rule_5_1_10: true
+ubtu26cis_rule_5_1_11: true
+ubtu26cis_rule_5_1_12: true
+ubtu26cis_rule_5_1_13: true
+ubtu26cis_rule_5_1_14: true
+ubtu26cis_rule_5_1_15: true
+ubtu26cis_rule_5_1_16: true
+ubtu26cis_rule_5_1_17: true
+ubtu26cis_rule_5_1_18: true
+ubtu26cis_rule_5_1_19: true
+ubtu26cis_rule_5_1_20: true
+ubtu26cis_rule_5_1_21: true
+ubtu26cis_rule_5_1_22: true
+ubtu26cis_rule_5_1_23: true
+ubtu26cis_rule_5_1_24: true
+# 5.2 Configure privilege escalation
+ubtu26cis_rule_5_2_1: true
+ubtu26cis_rule_5_2_2: true
+ubtu26cis_rule_5_2_3: true
+ubtu26cis_rule_5_2_4: true
+ubtu26cis_rule_5_2_5: true
+ubtu26cis_rule_5_2_6: true
+ubtu26cis_rule_5_2_7: true
+# 5.3.1 Configure PAM software packages
+ubtu26cis_rule_5_3_1_1: true
+ubtu26cis_rule_5_3_1_2: true
+ubtu26cis_rule_5_3_1_3: true
+ubtu26cis_rule_5_3_1_4: true
+# 5.3.2 Configure pam-auth-update profiles
+ubtu26cis_rule_5_3_2_1: true
+ubtu26cis_rule_5_3_2_2: true
+ubtu26cis_rule_5_3_2_3: true
+ubtu26cis_rule_5_3_2_4: true
+# 5.3.3.1 Configure pam_faillock module
+ubtu26cis_rule_5_3_3_1_1: true
+ubtu26cis_rule_5_3_3_1_2: true
+ubtu26cis_rule_5_3_3_1_3: true
+# 5.3.3.2 Configure pam_quality module
+ubtu26cis_rule_5_3_3_2_1: true
+ubtu26cis_rule_5_3_3_2_2: true
+ubtu26cis_rule_5_3_3_2_3: true
+ubtu26cis_rule_5_3_3_2_4: true
+ubtu26cis_rule_5_3_3_2_5: true
+ubtu26cis_rule_5_3_3_2_6: true
+ubtu26cis_rule_5_3_3_2_7: true
+ubtu26cis_rule_5_3_3_2_8: true
+# 5.3.3.3 Configure pam_history module
+# This are added as part of 5.3.2.4 using jinja2 template
+ubtu26cis_rule_5_3_3_3_1: true
+ubtu26cis_rule_5_3_3_3_2: true
+ubtu26cis_rule_5_3_3_3_3: true
+# 5.3.3.4 Configure pam_unix module
+ubtu26cis_rule_5_3_3_4_1: true
+ubtu26cis_rule_5_3_3_4_2: true
+ubtu26cis_rule_5_3_3_4_3: true
+ubtu26cis_rule_5_3_3_4_4: true
+# 5.4 User Accounts and Environment
+# 5.4.1 Configure shadow password suite parameters
+ubtu26cis_rule_5_4_1_1: true
+ubtu26cis_rule_5_4_1_2: true
+ubtu26cis_rule_5_4_1_3: true
+ubtu26cis_rule_5_4_1_4: true
+ubtu26cis_rule_5_4_1_5: true
+ubtu26cis_rule_5_4_1_6: true
+# 5.4.2 Configure root and system accounts and environment
+ubtu26cis_rule_5_4_2_1: true
+ubtu26cis_rule_5_4_2_2: true
+ubtu26cis_rule_5_4_2_3: true
+ubtu26cis_rule_5_4_2_4: true
+ubtu26cis_rule_5_4_2_5: true
+ubtu26cis_rule_5_4_2_6: true
+ubtu26cis_rule_5_4_2_7: true
+ubtu26cis_rule_5_4_2_8: true
+# 5.4.2 Configure user default environment
+ubtu26cis_rule_5_4_3_1: true
+ubtu26cis_rule_5_4_3_2: true
+ubtu26cis_rule_5_4_3_3: true
+
+## Section 6
+
+# 6.1.1.1 Configure systemd-journald service
+ubtu26cis_rule_6_1_1_1_1: true
+ubtu26cis_rule_6_1_1_1_2: true
+ubtu26cis_rule_6_1_1_1_3: true
+ubtu26cis_rule_6_1_1_1_4: true
+ubtu26cis_rule_6_1_1_1_5: true
+ubtu26cis_rule_6_1_1_1_6: true
+ubtu26cis_rule_6_1_1_1_7: true
+# 6.1.2 Configure rsyslog
+ubtu26cis_rule_6_1_2_1: true
+ubtu26cis_rule_6_1_2_2: true
+ubtu26cis_rule_6_1_2_3: true
+ubtu26cis_rule_6_1_2_4: true
+ubtu26cis_rule_6_1_2_5: true
+ubtu26cis_rule_6_1_2_6: true
+ubtu26cis_rule_6_1_2_7: true
+ubtu26cis_rule_6_1_2_8: true
+ubtu26cis_rule_6_1_2_9: true
+ubtu26cis_rule_6_1_2_10: true
+# 6.1.3 configure logfiles
+ubtu26cis_rule_6_1_3_1: true
+# 6.2.1 Configure auditd services
+ubtu26cis_rule_6_2_1_1: true
+ubtu26cis_rule_6_2_1_2: true
+ubtu26cis_rule_6_2_1_3: true
+ubtu26cis_rule_6_2_1_4: true
+# 6.2.2 Configure auditd data retention
+ubtu26cis_rule_6_2_2_1: true
+ubtu26cis_rule_6_2_2_2: true
+ubtu26cis_rule_6_2_2_3: true
+ubtu26cis_rule_6_2_2_4: true
+# 6.2.3 Configure auditd rules
+ubtu26cis_rule_6_2_3_1: true
+ubtu26cis_rule_6_2_3_2: true
+ubtu26cis_rule_6_2_3_3: true
+ubtu26cis_rule_6_2_3_4: true
+ubtu26cis_rule_6_2_3_5: true
+ubtu26cis_rule_6_2_3_6: true
+ubtu26cis_rule_6_2_3_7: true
+ubtu26cis_rule_6_2_3_8: true
+ubtu26cis_rule_6_2_3_9: true
+ubtu26cis_rule_6_2_3_10: true
+ubtu26cis_rule_6_2_3_11: true
+ubtu26cis_rule_6_2_3_12: true
+ubtu26cis_rule_6_2_3_13: true
+ubtu26cis_rule_6_2_3_14: true
+ubtu26cis_rule_6_2_3_15: true
+ubtu26cis_rule_6_2_3_16: true
+ubtu26cis_rule_6_2_3_17: true
+ubtu26cis_rule_6_2_3_18: true
+ubtu26cis_rule_6_2_3_19: true
+ubtu26cis_rule_6_2_3_20: true
+ubtu26cis_rule_6_2_3_21: true
+ubtu26cis_rule_6_2_3_22: true
+ubtu26cis_rule_6_2_3_23: true
+ubtu26cis_rule_6_2_3_24: true
+ubtu26cis_rule_6_2_3_25: true
+ubtu26cis_rule_6_2_3_26: true
+ubtu26cis_rule_6_2_3_27: true
+ubtu26cis_rule_6_2_3_28: true
+ubtu26cis_rule_6_2_3_29: true
+ubtu26cis_rule_6_2_3_30: true
+ubtu26cis_rule_6_2_3_31: true
+ubtu26cis_rule_6_2_3_32: true
+ubtu26cis_rule_6_2_3_33: true
+ubtu26cis_rule_6_2_3_34: true
+ubtu26cis_rule_6_2_3_35: true
+ubtu26cis_rule_6_2_3_36: true
+# 6.2.4 Configure audit file access
+ubtu26cis_rule_6_2_4_1: true
+ubtu26cis_rule_6_2_4_2: true
+ubtu26cis_rule_6_2_4_3: true
+ubtu26cis_rule_6_2_4_4: true
+ubtu26cis_rule_6_2_4_5: true
+ubtu26cis_rule_6_2_4_6: true
+ubtu26cis_rule_6_2_4_7: true
+ubtu26cis_rule_6_2_4_8: true
+ubtu26cis_rule_6_2_4_9: true
+ubtu26cis_rule_6_2_4_10: true
+# 6.3 Configure Filesystem Integrity Checking
+ubtu26cis_rule_6_3_1: true
+ubtu26cis_rule_6_3_2: true
+ubtu26cis_rule_6_3_3: true
+
+## Section 7
+# 7.1 System File Permissions
+ubtu26cis_rule_7_1_1: true
+ubtu26cis_rule_7_1_2: true
+ubtu26cis_rule_7_1_3: true
+ubtu26cis_rule_7_1_4: true
+ubtu26cis_rule_7_1_5: true
+ubtu26cis_rule_7_1_6: true
+ubtu26cis_rule_7_1_7: true
+ubtu26cis_rule_7_1_8: true
+ubtu26cis_rule_7_1_9: true
+ubtu26cis_rule_7_1_10: true
+ubtu26cis_rule_7_1_11: true
+ubtu26cis_rule_7_1_12: true
+ubtu26cis_rule_7_1_13: true
+# 7.2 Local User and Group Settings
+ubtu26cis_rule_7_2_1: true
+ubtu26cis_rule_7_2_2: true
+ubtu26cis_rule_7_2_3: true
+ubtu26cis_rule_7_2_4: true
+ubtu26cis_rule_7_2_5: true
+ubtu26cis_rule_7_2_6: true
+ubtu26cis_rule_7_2_7: true
+ubtu26cis_rule_7_2_8: true
+ubtu26cis_rule_7_2_9: true
+ubtu26cis_rule_7_2_10: true
+ubtu26cis_rule_7_2_11: true
+
+## System functionality configuration variables
+##
+## There are certain functionalities of a system
+## that may require either to skip certain CIS rules
+## or install certain packages.
+## Set the respective variable to `true` in order to
+## enable a certain functionality on the system
+
+# This variable governs whether specific CIS rules
+# concerned with acceptance and routing of packages
+# are skipped.
+ubtu26cis_is_router: false
+
+## IPv4 requirement toggle
+# This variable governs whether ipv4 is enabled or disabled.
+ubtu26cis_ipv4_required: true
+
+## IPv6 requirement toggle
+# This variable governs whether ipv6 is enabled or disabled.
+ubtu26cis_ipv6_required: true
+
+## Desktop requirement toggle
+# This variable governs, whether CIS rules regarding GDM
+# and X-Windows are carried out.
+ubtu26cis_desktop_required: false
+
+## Section 1
+
+# A location that can be used as a temporary location to execute scripts
+# note the drive with need exec permissions used by 1.1.1.10
+ubtu26cis_temp_exec_location: /var
+
+# If system uses squashfs e.gf. snap package manager set true
+ubtu26cis_squashfs_skip: false
+
+## Controls 1.3.1.3 and 1.3.1.4 Ensure all AppArmor Profiles are in enforce (1.3.1.3/4) or complain (1.3.1.3) mode
+
+# This variable disables the implementation of rules 1.3.1.3 and 1.3.1.4
+# regarding enforcing profiles or putting them in complain mode
+ubtu26cis_apparmor_disable: false
+
+## Controls 1.4.x - Boot password
+#
+# THIS VARIABLE SHOULD BE CHANGED AND INCORPORATED INTO VAULT
+# THIS VALUE IS WHAT THE ROOT PW WILL BECOME!!!!!!!!
+# HAVING THAT PW EXPOSED IN RAW TEXT IS NOT SECURE!!!!
+ubtu26cis_grub_user: root
+ubtu26cis_bootloader_password_hash: "grub.pbkdf2.sha512.changethispassword"  # pragma: allowlist secret
+
+## Controls 1.5.x
+
+## Controls 1.6.x  - Warning banners
+# The controls 1.6.x set various warning banners and protect the respective files
+# by tightening the access rights.
+
+# This variable specifies the warning banner displayed to the user
+# after local login, remote login, and as motd (message of the day)
+# Noe that the banner text must not contain the below items in order to be
+# compliant with CIS: \m, \r, \s, \v or references to the OS platform
+ubtu26cis_warning_banner: |
+        Authorized users only. All activity may be monitored and reported.
+
+# This variable governs, whether dynamic motd is disabled (as required by control 1.7.1)
+ubtu26cis_sshd_banner_file: /etc/issue.net
+ubtu26cis_disable_dynamic_motd: true
+
+## Controls 1.7.x - Settings for GDM
+# This variable specifies the GNOME configuration database file to which configurations are written.
+# (See https://help.gnome.org/admin/system-admin-guide/stable/dconf-keyfiles.html.en)
+# The default database is `local`.
+ubtu26cis_dconf_db_name: local
+
+##
+# Section 2
+##
+
+##
+## Service configuration variables.
+##
+## Set the respective variable to true to keep the service.
+## otherwise the service is stopped and disabled
+##
+# Service configuration
+# Options are
+# true to leave installed if exists not changes take place
+# false - this removes the package
+# mask - if a dependancy for product so cannot be removed
+# Server Services
+ubtu26cis_autofs_services: false
+ubtu26cis_autofs_mask: false
+ubtu26cis_avahi_server: false
+ubtu26cis_avahi_mask: false
+ubtu26cis_dhcp_server: false
+ubtu26cis_dhcp_mask: false
+ubtu26cis_dns_server: false
+ubtu26cis_dns_mask: false
+ubtu26cis_dnsmasq_server: false
+ubtu26cis_dnsmasq_mask: false
+ubtu26cis_ftp_server: false
+ubtu26cis_ftp_mask: false
+ubtu26cis_ldap_server: false
+ubtu26cis_ldap_mask: false
+ubtu26cis_message_server: false  # This is for messaging dovecot and dovecot-pop3
+ubtu26cis_message_mask: false
+ubtu26cis_nfs_server: true
+ubtu26cis_nfs_mask: true
+ubtu26cis_nis_server: true  # set to mask if nis client required
+ubtu26cis_nis_mask: false
+ubtu26cis_print_server: false  # replaces cups
+ubtu26cis_print_mask: false
+ubtu26cis_rpc_server: true
+ubtu26cis_rpc_mask: true
+ubtu26cis_rsync_server: false
+ubtu26cis_rsync_mask: false
+ubtu26cis_samba_server: false
+ubtu26cis_samba_mask: false
+ubtu26cis_snmp_server: false
+ubtu26cis_snmp_mask: false
+ubtu26cis_telnet_server: false
+ubtu26cis_telnet_mask: false
+ubtu26cis_tftp_server: false
+ubtu26cis_tftp_mask: false
+ubtu26cis_squid_server: false
+ubtu26cis_squid_mask: false
+ubtu26cis_apache2_server: false
+ubtu26cis_apache2_mask: false
+ubtu26cis_nginx_server: false
+ubtu26cis_nginx_mask: false
+ubtu26cis_xinetd_server: false
+ubtu26cis_xinetd_mask: false
+ubtu26cis_xwindow_server: false  # will remove mask not an option
+ubtu26cis_is_mail_server: false
+
+# Client Services
+# ubtu26cis_nis_client_required: false  # Same package as use nis_server value
+ubtu26cis_rsh_client: false
+ubtu26cis_talk_client: false
+ubtu26cis_telnet_required: false
+ubtu26cis_ldap_clients_required: false
+ubtu26cis_ftp_client: false
+
+## Control 2.3.1.1
+# This variable choses the tool used for time synchronization
+# The two options are `chrony`and `systemd-timesyncd`.
+ubtu26cis_time_sync_tool: "chrony"
+
+## Controls 2.3.x - Configure time pools & servers for chrony and timesyncd
+# The following variable represents a list of of time server pools used
+# for configuring chrony and timesyncd.
+# Each list item contains two settings, `name` (the domain name of the pool) and synchronization `options`.
+# The default setting for the `options` is `iburst maxsources 4` -- please refer to the documentation
+# of the time synchronization mechanism you are using.
+ubtu26cis_time_pool:
+  - name: time.nist.gov
+
+# The following variable represents a list of of time servers used
+# for configuring chrony and timesyncd
+# Each list item contains two settings, `name` (the domain name of the server) and synchronization `options`.
+# The default setting for the `options` is `iburst` -- please refer to the documentation
+# of the time synchronization mechanism you are using.
+ubtu26cis_time_servers:
+  - name: time-a-g.nist.gov
+    options: iburst
+  - name: time-b-g.nist.gov
+    options: iburst
+  - name: time-c-g.nist.gov
+    options: iburst
+
+# Section 3
+## Control 3.1.1 - Ensure system is checked to determine if IPv6 is enabled
+# This variable governs the mechanism of how the disabling of IPV6 is carried out.
+# Its possible values are `grub` and `sysctl`.
+ubtu26cis_ipv6_disable: grub
+
+## Control 3.1.3 - Ensure bluetooth Services are not in use
+# This control managed how the bluetooth service is managaed
+# Options are
+# true to leave installed if exists not changes take place
+# false - this removes the package
+# mask - if a dependancy for product so cannot be removed
+ubtu26cis_bluetooth_service: false
+ubtu26cis_bluetooth_mask: false
+
+## Control 3.3.x - Networking configuration
+# This variable contains the path to the file in which, sysctl saves its configurations.
+# Its default value is `/etc/sysctl.conf`.
+ubtu26cis_sysctl_network_conf: /etc/sysctl.conf
+
+#
+### Section 4 - Host Based Firewall (UFW only)
+#
+# This benchmark covers UFW only; nftables and iptables are not in scope.
+ubtu26cis_ufw_use_sysctl: true
+
+## auditd settings
+ubtu26cis_auditd_space_left_action: email
+ubtu26cis_auditd_admin_space_left_action: halt
+ubtu26cis_auditd_max_log_file_action: keep_logs
+ubtu26cis_auditd_back_log_limit: 8192
+
+## syslog
+# Set which syslog service
+# journald or rsyslog
+ubtu26cis_syslog_service: 'journald'
+ubtu26cis_system_is_log_server: false
+
+### Section 5
+# Note the following to understand precedence and layout
+
+ubtu26cis_sshd_allow_users: 'AllowUsers'
+ubtu26cis_sshd_allow_groups: 'AllowGroups'
+ubtu26cis_sshd_deny_users: 'DenyUsers'
+ubtu26cis_sshd_deny_groups: 'DenyGroups'
+
+ubtu26cis_sshd_client_alive_interval: 15
+ubtu26cis_sshd_client_alive_count_max: 3
+
+# logins.def password settings
+ubtu26cis_pass_max_days: 365
+ubtu26cis_pass_min_days: 1
+ubtu26cis_pass_warn_age: 7
+
+# set sugroup if differs from wheel
+ubtu26cis_sugroup: nosugroup
+
+# var log location variable
+ubtu26cis_varlog_location: "/var/log/sudo.log"
+
+# Section 6
+ubtu26cis_config_aide: true
+
+# 6.1.2.5 rsyslog remote offload server settings
+# change as appropriate - must match ubtu26cis_remote_log_server in the
+# remediation role defaults/main.yml, otherwise a standalone audit run tests a
+# different loghost than the role configures.
+ubtu26cis_remote_log_server: 192.168.2.100
+ubtu26cis_remote_log_port: 514
+ubtu26cis_remote_log_protocol: tcp
+
+# 6.1.2
+# aide setup via - cron, timer
+ubtu26cis_aide_scan: cron

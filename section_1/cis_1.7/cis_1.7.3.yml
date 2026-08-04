@@ -1,0 +1,36 @@
+---
+
+{{ if .Vars.ubtu26cis_level_1 }}
+  {{ if .Vars.ubtu26cis_desktop_required }}
+    {{ if .Vars.ubtu26cis_rule_1_7_3 }}
+file:
+  gdm_screensaver:
+    title: 1.7.3 | Ensure GDM screen lock is configured
+    path: /etc/dconf/db/local.d/00-screensaver
+    exists: true
+    contents:
+    - '/^[org/gnome/desktop/session]/'
+    - '/^idle-delay=uint32 (1|[1-9]|[1-7][0-9]{1,2}|900)$/'
+    - '/^lock-delay=uint32 [0-5]$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.7.3
+      NIST800-53R5: NA
+  screensaver_lock_file:
+    title: 1.7.3 | Ensure GDM screen lock is configured | lock override
+    path: /etc/dconf/db/local.d/locks/00-screensave_lock
+    exists: true
+    contents:
+    - '^\/org\/gnome\/desktop\/session\/idle-delay/'
+    - '^/\/org\/gnome\/desktop\/screensaver\/lock-delay/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.7.3
+      NIST800-53R5: CM-11
+    {{ end }}
+  {{ end }}
+{{ end }}

@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.ubtu26cis_level_2 }}
+  {{ if .Vars.ubtu26cis_rule_5_1_10 }}
+file:
+  sshd_gssapiauth:
+    title: 5.1.10 | Ensure sshd GSSAPIAuthentication is disabled
+    path: /etc/ssh/sshd_config
+    exists: true
+    contents:
+    - 'GSSAPIAuthentication no'
+    - '!/^GSSAPIAuthentication yes/'
+    meta:
+      server: 2
+      workstation: 1
+      CIS_ID:
+      - 5.1.10
+      NIST800-53R5:
+      - CM-7
+  {{ end }}
+{{ end }}

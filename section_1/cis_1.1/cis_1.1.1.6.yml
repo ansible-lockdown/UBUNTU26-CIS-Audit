@@ -1,0 +1,29 @@
+---
+
+{{ if .Vars.ubtu26cis_level_2 }}
+  {{ if .Vars.ubtu26cis_rule_1_1_1_6 }}
+file:
+  overlayfs_disabled:
+    title: 1.1.1.6 | Ensure overlay kernel module is not available | modprobe
+    path: /etc/modprobe.d/CIS.conf
+    exists: true
+    contents:
+    - '/^install overlayfs /bin/(true|false)/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 1.1.1.6
+      NIST800-53R5: CM-7
+  overlayfs_blacklist:
+    title: 1.1.1.6 | Ensure overlay kernel module is not available | blacklist
+    path: /etc/modprobe.d/blacklist.conf
+    exists: true
+    contents:
+    - '/^blacklist overlayfs/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 1.1.1.6
+      NIST800-53R5: CM-7
+  {{ end }}
+{{ end }}

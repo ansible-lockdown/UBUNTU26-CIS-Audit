@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.ubtu26cis_level_2 }}
+  {{ if .Vars.ubtu26cis_rule_6_2_3_1 }}
+command:
+  auditd_1_config:
+    title: 6.2.3.1 | Ensure modification of the /etc/sudoers file is collected | Config
+    exec: grep scope /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '-w /etc/sudoers -p wa -k scope'
+    - '-w /etc/sudoers.d -p wa -k scope'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.1
+      NIST800-53R5:
+      - AU-3
+  {{ end }}
+{{ end }}

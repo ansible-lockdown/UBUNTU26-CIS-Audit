@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.ubtu26cis_level_2 }}
+  {{ if .Vars.ubtu26cis_rule_6_2_3_18 }}
+command:
+  auditd_18_config:
+    title: 6.2.3.18 | Ensure discretionary access control permission modification events chmod,fchmod,fchmodat,fchmodat2 are collected| Config
+    exec: grep perm_mod /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '-a always,exit -F arch=b64 -S chmod,fchmod,fchmodat -F auid>=1000 -F auid!=unset -k perm_mod'
+    - '-a always,exit -F arch=b32 -S chmod,fchmod,fchmodat -F auid>=1000 -F auid!=unset -k perm_mod'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.18
+      NIST800-53R5:
+      - AC-3
+      - AU-3
+      - MP-2
+  {{ end }}
+{{ end }}

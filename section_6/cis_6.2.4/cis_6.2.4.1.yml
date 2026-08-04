@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.ubtu26cis_level_2 }}
+  {{ if .Vars.ubtu26cis_rule_6_2_4_1 }}
+command:
+  audit_logfile_perms:
+    title: 6.2.4.1 | Ensure audit log files mode is configured
+    exec: find "$(grep ^log_file /etc/audit/auditd.conf | awk '{ print $NF }' | xargs dirname)" -type f -perm /137
+    exit-status: 0
+    stdout:
+    - '!/.*/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.4.1
+      NIST800-53R5:
+      - AU-3
+  {{ end }}
+{{ end }}

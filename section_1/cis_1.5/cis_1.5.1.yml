@@ -1,0 +1,30 @@
+---
+
+{{ if .Vars.ubtu26cis_level_1 }}
+  {{ if .Vars.ubtu26cis_rule_1_5_1 }}
+kernel-param:
+  fs.protected_hardlinks:
+    title: 1.5.1 | Ensure fs.protected_hardlinks is configured | sysctl_live
+    value: '1'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 1.5.1
+      NIST800-53R5: CM-6
+command:
+  protected_hardlinks_configured:
+    title: 1.5.1 | Ensure fs.protected_hardlinks is configured | sysctl_configured
+    exit-status:
+      or:
+      - 0
+      - 2
+    exec: 'grep "^fs\.protected_hardlinks" /etc/sysctl.conf /etc/sysctl.d/* | cut -d ":" -f2'
+    stdout:
+    - '/fs.protected_hardlinks\s*=\s*1/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 1.5.1
+      NIST800-53R5: CM-6
+  {{ end }}
+{{ end }}

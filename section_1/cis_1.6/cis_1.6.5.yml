@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.ubtu26cis_level_1 }}
+  {{ if .Vars.ubtu26cis_rule_1_6_5 }}
+file:
+  sshd_warning_banner_content:
+    title: 1.6.5 | Ensure sshd warning Banner is configured
+    path: {{ .Vars.ubtu26cis_sshd_banner_file }}
+    exists: true
+    contents:
+    - '!/(\\v|\\r|\\m|\\s)/'
+    - '!/(?i)ubuntu/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.6.5
+      NIST800-53R5:
+      - CM-6
+      - CM-1
+      - CM-3
+  {{ end }}
+{{ end }}

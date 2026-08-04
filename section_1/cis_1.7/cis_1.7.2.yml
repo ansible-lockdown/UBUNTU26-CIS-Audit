@@ -1,0 +1,27 @@
+---
+
+{{ if .Vars.ubtu26cis_level_1 }}
+  {{ if .Vars.ubtu26cis_desktop_required }}
+    {{ if .Vars.ubtu26cis_rule_1_7_2 }}
+command:
+  gdm_disable_user:
+    title: 1.7.2 | Ensure GDM disable-user-list is configured
+    exec: grep -E "^disable-user-list" /etc/gdm3/greeter.dconf-defaults
+    exit-status: 0
+    stdout:
+    - '/^disable-user-list=true/'
+    - '!/^disable-user-list=false/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.7.2
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+    {{ end }}
+  {{ end }}
+{{ end }}

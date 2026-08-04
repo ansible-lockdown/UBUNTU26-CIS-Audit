@@ -1,0 +1,25 @@
+---
+
+{{ if .Vars.ubtu26cis_level_1 }}
+  {{ if .Vars.ubtu26cis_rule_1_6_4 }}
+    {{ if .Vars.ubtu26cis_disable_dynamic_motd }}
+file:
+  pam_motd_configured:
+    title: 1.6.4 | Ensure pam_motd is configured
+    path: /etc/pam.d/sshd
+    exists: true
+    contents:
+    - '!/^session\s+optional\s+pam_motd.so\s+motd=\/run\/motd.dynamic/'
+    - '!/^session\s+optional\s+pam_motd.so noupdate/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.6.4
+      NIST800-53R5:
+      - CM-6
+      - CM-1
+      - CM-3
+    {{ end }}
+  {{ end }}
+{{ end }}
