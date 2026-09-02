@@ -2,7 +2,7 @@
 
 {{ if .Vars.ubtu26cis_level_1 }}
   {{ if .Vars.ubtu26cis_rule_1_6_6 }}
-exec:
+command:
   motd_permissions:
     title: 1.6.6 | Ensure access to /etc/motd is configured
     exec: FILE=/etc/motd && if [ -f $FILE ]; then PERMS=`stat  -c '%U %G %a' $FILE`; if [ "$PERMS" != "root root 644" ]; then echo "Permissions Incorrect"; fi; fi
