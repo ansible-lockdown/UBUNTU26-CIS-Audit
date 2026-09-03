@@ -1,5 +1,12 @@
 # Initial Ubuntu26 CIS V1.0.0 August 2026
 
+## September 2026 - contributing guidelines
+
+- CONTRIBUTING.md replaced with the canonical org-wide copy. It now states that pull
+  requests come from approved contributors, how to be onboarded through the Discord
+  server, and that issues remain open to everyone
+- README gained a Contributing section under Support pointing at CONTRIBUTING.md
+
 ## September 2026 - three-way alignment to v1.0.0
 
 - 5.4.1.2 carried a second test whose title and CIS_ID were copy-pasted from 5.4.1.1.
