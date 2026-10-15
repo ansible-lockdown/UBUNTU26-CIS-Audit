@@ -8,8 +8,8 @@ command:
     exec: grep MAC-policy /etc/audit/rules.d/*.rules
     exit-status: 0
     stdout:
-    - '-w /etc/apparmor/ -p wa -k MAC-policy'
-    - '-w /etc/apparmor.d/ -p wa -k MAC-policy'
+    - '-a always,exit -F arch=b64 -F dir=/etc/apparmor -F perm=wa -k MAC-policy'
+    - '-a always,exit -F arch=b64 -F dir=/etc/apparmor.d -F perm=wa -k MAC-policy'
     meta:
       server: 2
       workstation: 2

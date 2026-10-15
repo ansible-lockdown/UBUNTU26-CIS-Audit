@@ -19,7 +19,7 @@ file:
 command:
   sugroup_etc_group:
     title: 5.2.7 | Ensure access to the su command is restricted
-    exec: grep {{ .Vars.ubtu26cis_sugroup }} /etc/group  | awk -F':' '{print $NF}'
+    exec: awk -F':' -v g="{{ .Vars.ubtu26cis_sugroup }}" '$1 == g {print $NF}' /etc/group
     exit-status: 0
     stdout:
     - '!/^[a-zA-Z]/'

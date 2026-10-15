@@ -20,7 +20,7 @@
     command:
       ipv4_all_rp_filter:
         title: 3.3.1.12 | Ensure net.ipv4.conf.all.rp_filter is configured | conf
-        exec: grep "net\.ipv4\.conf\.all\.rp_filter" /etc/sysctl.conf /etc/sysctl.d/*
+        exec: grep "net\.ipv4\.conf\.all\.rp_filter" $([ -f /etc/sysctl.conf ] && echo /etc/sysctl.conf) /etc/sysctl.d/*
         exit-status:
           or:
           - 0

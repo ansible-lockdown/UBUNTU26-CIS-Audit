@@ -1,6 +1,6 @@
 ---
 
-{{ if .Vars.ubtu26cis_level_2 }}
+{{ if .Vars.ubtu26cis_level_1 }}
   {{ if .Vars.ubtu26cis_rule_5_1_10 }}
 file:
   sshd_gssapiauth:
@@ -11,7 +11,7 @@ file:
     - 'GSSAPIAuthentication no'
     - '!/^GSSAPIAuthentication yes/'
     meta:
-      server: 2
+      server: 1
       workstation: 1
       CIS_ID:
       - 5.1.10

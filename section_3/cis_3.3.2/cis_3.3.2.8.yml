@@ -21,7 +21,7 @@
       command:
         ipv6_def_accept_ra:
           title: 3.3.2.8 | Ensure net.ipv6.conf.default.accept_ra is configured | conf
-          exec: grep "net\.ipv6\.conf\.default\.accept_ra" /etc/sysctl.conf /etc/sysctl.d/*
+          exec: grep "net\.ipv6\.conf\.default\.accept_ra" $([ -f /etc/sysctl.conf ] && echo /etc/sysctl.conf) /etc/sysctl.d/*
           exit-status:
             or:
             - 0

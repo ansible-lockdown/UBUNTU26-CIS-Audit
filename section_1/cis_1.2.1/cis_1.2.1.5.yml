@@ -13,7 +13,7 @@ file:
     mode: "0755"
     meta:
       server: 1
-      workstation: 2
+      workstation: 1
       CIS_ID: 1.2.1.5
       NIST800-53R5: AC-6
   {{ end }}

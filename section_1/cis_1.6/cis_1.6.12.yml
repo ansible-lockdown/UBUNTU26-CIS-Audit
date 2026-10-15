@@ -10,7 +10,9 @@ service:
     skip: true
     meta:
       server: 1
-      CIS_ID: 1.6.12
+      workstation: NA
+      CIS_ID:
+      - 1.6.12
       NIST800-53R5: CM-7
   {{ end }}
 {{ end }}

@@ -6,7 +6,7 @@
 command:
   gdm_disable_user:
     title: 1.7.2 | Ensure GDM disable-user-list is configured
-    exec: grep -E "^disable-user-list" /etc/gdm3/greeter.dconf-defaults
+    exec: grep -Es "^disable-user-list" /etc/dconf/db/{{ .Vars.ubtu26cis_dconf_db_name }}.d/00-login-screen
     exit-status: 0
     stdout:
     - '/^disable-user-list=true/'

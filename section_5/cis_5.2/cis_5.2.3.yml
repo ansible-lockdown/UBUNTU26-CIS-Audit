@@ -4,12 +4,14 @@
   {{ if .Vars.ubtu26cis_rule_5_2_3 }}
 command:
   log_sudoers_d:
-    title: 5.2.3 | Ensure sudo log file exists | sudoers.d
-    exec: "grep -Ec '^Defaults logfile=/var/log/*.log' /etc/sudoers /etc/sudoers.d/.*/"
-    exit-status:
-      lt: 3
+    title: 5.2.3 | Ensure sudo log file exists
+    exec: |
+      bash -c 'if journalctl -t sudo -t sudo-rs --no-pager -q -n 1 2>/dev/null | grep -q .; then echo "method A: sudo events reach the journal"; fi
+      if grep -rPsiq "^\h*Defaults\h+([^#]+,\h*)?logfile\h*=\h*(\"|\x27)?\H+" /etc/sudoers /etc/sudoers.d/; then echo "method B: sudo logfile is set"; fi
+      true'
+    exit-status: 0
     stdout:
-    - '/[1:99]/'
+    - '/method (A|B):/'
     meta:
       server: 1
       workstation: 1

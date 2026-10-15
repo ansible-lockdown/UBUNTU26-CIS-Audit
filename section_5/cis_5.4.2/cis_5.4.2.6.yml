@@ -6,7 +6,7 @@
 command:
   root_umask_bash_profile:
     title: 5.4.2.6 | Ensure root user umask is configured
-    exec: grep -i umask /root/.bash_profile /root/bashrc
+    exec: grep -is umask /root/.bash_profile /root/.bashrc /root/.profile
     exit-status:
      or:
       - 0

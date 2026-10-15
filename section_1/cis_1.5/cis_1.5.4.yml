@@ -15,7 +15,7 @@ command:
   suid_dumpable_configured:
     title: 1.5.4 | Ensure fs.suid_dumpable is configured | sysctl.conf
     exit-status: 0
-    exec: 'grep "fs\.suid_dumpable" /etc/sysctl.conf /etc/sysctl.d/*'
+    exec: 'grep "fs\.suid_dumpable" $([ -f /etc/sysctl.conf ] && echo /etc/sysctl.conf) /etc/sysctl.d/*'
     stdout:
     - fs.suid_dumpable=0
     meta:

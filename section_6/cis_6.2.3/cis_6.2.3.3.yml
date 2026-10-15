@@ -8,7 +8,7 @@ command:
     exec: grep sudo_log_file /etc/audit/rules.d/*.rules
     exit-status: 0
     stdout:
-    - '-w {{ .Vars.ubtu26cis_varlog_location }} -p wa -k sudo_log_file'
+    - '-a always,exit -F arch=b64 -F path={{ .Vars.ubtu26cis_varlog_location }} -F perm=wa -k sudo_log_file'
     meta:
       server: 2
       workstation: 2

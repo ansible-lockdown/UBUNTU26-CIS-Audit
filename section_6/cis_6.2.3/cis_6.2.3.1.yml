@@ -8,8 +8,8 @@ command:
     exec: grep scope /etc/audit/rules.d/*.rules
     exit-status: 0
     stdout:
-    - '-w /etc/sudoers -p wa -k scope'
-    - '-w /etc/sudoers.d -p wa -k scope'
+    - '-a always,exit -F arch=b64 -F path=/etc/sudoers -F perm=wa -k scope'
+    - '-a always,exit -F arch=b64 -F dir=/etc/sudoers.d -F perm=wa -k scope'
     meta:
       server: 2
       workstation: 2

@@ -8,9 +8,22 @@ command:
     exec: grep time-change /etc/audit/rules.d/*.rules
     exit-status: 0
     stdout:
-    - '-a always,exit -F arch=b64 -S adjtimex,settimeofday,clock_settime -k time-change'
-    - '-a always,exit -F arch=b32 -S adjtimex,settimeofday,clock_settime -k time-change'
-    - '-w /etc/localtime -p wa -k time-change'
+    - '-a always,exit -F arch=b64 -S adjtimex,settimeofday -k time-change'
+    - '-a always,exit -F arch=b64 -S clock_settime -F a0=0x0 -k time-change'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.4
+      NIST800-53R5:
+      - AU-3
+      - CM-6
+  auditd_4_localtime:
+    title: 6.2.3.4 | Ensure events that modify date and time information are collected | localtime
+    exec: grep localtime-change /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '-a always,exit -F arch=b64 -F path=/etc/localtime -F perm=wa -k localtime-change'
     meta:
       server: 2
       workstation: 2

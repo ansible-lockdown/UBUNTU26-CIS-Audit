@@ -21,7 +21,7 @@
       command:
         ipv6_def_accept_redirects:
           title: 3.3.2.4 | Ensure net.ipv6.conf.default.accept_redirects is configured | conf
-          exec: grep "net\.ipv6\.conf\.default\.accept_redirects" /etc/sysctl.conf /etc/sysctl.d/*
+          exec: grep "net\.ipv6\.conf\.default\.accept_redirects" $([ -f /etc/sysctl.conf ] && echo /etc/sysctl.conf) /etc/sysctl.d/*
           exit-status:
             or:
             - 0
