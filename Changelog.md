@@ -22,6 +22,12 @@
 - 2.2.1 gated on ubtu26cis_nis_client_required
 - 2.1.3 checks the kea packages and units
 - 1.2.1.3, 1.2.1.6 and 1.2.1.9 mode patterns accept stat output without a leading zero
+- 1.2.1.10 passes when sources.list has no http entries
+- 1.2.1.11 checks only .list and .sources files
+- 1.6.9 checks the motd files named in /etc/pam.d
+- 4.1.5 accepts disabled (routed) with a DROP or REJECT forward policy
+- 5.4.2.4 accepts a locked root account
+- 5.1.14 requires both post-quantum key exchange algorithms
 - 1.7.1 to 1.7.5 test the dconf files the role writes, section headers matched literally
 - 1.7.3 to 1.7.5 lock file names and patterns corrected, autorun-never typo fixed
 - 5.1.3 find -name globs quoted

@@ -5,10 +5,11 @@
 command:
   ufw_routed_default:
     title: 4.1.5 | Ensure ufw routed default is configured
-    exec: 'ufw status verbose | grep Default:'
+    exec: ufw status verbose | grep -Po '\S+(?= \(routed\))' ; grep -Po '^DEFAULT_FORWARD_POLICY="\K[A-Z]+' /etc/default/ufw
     exit-status: 0
     stdout:
-    - '/deny \(routed\)/'
+    - '/^(deny|reject|disabled)$/'
+    - '/^(DROP|REJECT)$/'
     meta:
       server: 1
       workstation: 1

@@ -8,7 +8,8 @@ command:
     exec: sshd -T | grep -i kexalgorithms
     exit-status: 0
     stdout:
-    - '/sntrup761x25519|mlkem768x25519/'
+    - '/sntrup761x25519-sha512/'
+    - '/mlkem768x25519-sha256/'
     meta:
       server: 1
       workstation: 1
