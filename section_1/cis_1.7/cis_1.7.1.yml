@@ -6,12 +6,12 @@
 file:
   gdm_banner:
     title: 1.7.1 | Ensure GDM login banner is configured
-    path: /etc/gdm3/greeter.dconf-defaults
+    path: /etc/dconf/db/{{ .Vars.ubtu26cis_dconf_db_name }}.d/00-login-screen
     exists: true
     contents:
-    - '/^[org/gnome/login-screen]/'
+    - '/^\[org\/gnome\/login-screen\]/'
     - '/^banner-message-enable=true/'
-    - "/^banner-message-text='{{ .Vars.ubtu26cis_warning_banner }}'/"
+    - "/^banner-message-text='.+'/"
     meta:
       server: 1
       workstation: 1

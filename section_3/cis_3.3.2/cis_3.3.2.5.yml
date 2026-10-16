@@ -22,7 +22,7 @@
         command:
           ipv6_all_source_route:
             title: 3.3.2.5 | Ensure net.ipv6.conf.all.accept_source_route is configured | conf
-            exec: grep "net\.ipv6\.conf\.all\.accept_source_route" /etc/sysctl.conf /etc/sysctl.d/*
+            exec: grep "net\.ipv6\.conf\.all\.accept_source_route" $([ -f /etc/sysctl.conf ] && echo /etc/sysctl.conf) /etc/sysctl.d/*
             exit-status:
               or:
               - 0

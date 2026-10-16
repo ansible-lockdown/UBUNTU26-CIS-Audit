@@ -1,15 +1,15 @@
 ---
 
-{{ if .Vars.ubtu26cis_level_1 }}
+{{ if .Vars.ubtu26cis_level_2 }}
   {{ if .Vars.ubtu26cis_desktop_required }}
     {{ if .Vars.ubtu26cis_rule_1_7_4 }}
 file:
   gnome_automount_disable:
     title: 1.7.4 | Ensure GDM automount is configured
-    path: /etc/dconf/db/local.d/00-media-automount
+    path: /etc/dconf/db/{{ .Vars.ubtu26cis_dconf_db_name }}.d/00-media-automount
     exists: true
     contents:
-    - '/^[org/gnome/desktop/media-handling]/'
+    - '/^\[org\/gnome\/desktop\/media-handling\]/'
     - '/^automount=false/'
     - '/^automount-open=false/'
     meta:
@@ -25,11 +25,11 @@ file:
       - IA-5
   gnome_automount_lock:
     title: 1.7.4 | Ensure GDM automount is configured | lock override
-    path: /etc/dconf/db/local.d/locks/00-automount_lock
+    path: /etc/dconf/db/{{ .Vars.ubtu26cis_dconf_db_name }}.d/locks/00-automount_lock
     exists: true
     contents:
-    - '^/\/org\/gnome\/desktop\/media-handling\/automount/'
-    - '^/\/org\/gnome\/desktop\/media-handling\/automount-open/'
+    - '/^\/org\/gnome\/desktop\/media-handling\/automount$/'
+    - '/^\/org\/gnome\/desktop\/media-handling\/automount-open$/'
     meta:
       server: 1
       workstation: 2

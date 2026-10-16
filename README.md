@@ -1,4 +1,4 @@
-# Ubuntu 26.04 Goss config
+# Ubuntu 26.04 Syver config
 
 ## Overview
 
@@ -19,8 +19,7 @@ Please refer to the file for all options and their meanings
 The listed variable for every control/benchmark can be turned on/off or section
 
 - Other controls
-  - enable_selinux
-  - run_heavy_tasks
+  - run_heavy_tests
 
 - Bespoke options
 
@@ -28,7 +27,7 @@ The listed variable for every control/benchmark can be turned on/off or section
 
 ## Requirements
 
-goss >= 0.4.8
+syver >= 0.15.1 - the continuation of goss, reading the same goss file format. Syver replaces goss as it is a signed fork that is regularly updated.
 root privileges
 
 ## Branches
@@ -42,7 +41,7 @@ Details will show in the README as part of the remediation as to the benchmark f
 
 ## Usage
 
-Fot the latest information on audit and how it can be used please visit
+For the latest information on audit and how it can be used please visit
 
 [Read the Docs - Audit]
 
@@ -66,8 +65,9 @@ Pull requests are accepted from approved contributors only. To be onboarded, joi
 
 ## Links and Further information
 
-- [Goss]
-  - [Goss documentation]
+- [Syver]
+  - [Syver documentation]
+  - [goss vs Syver]
 - [Centre For Internet Security]
 
 <!----
@@ -80,10 +80,11 @@ README Links
 [Centre For Internet Security]: https://www.cisecurity.org
 [Read the Docs - Audit]: https://ansible-lockdown.readthedocs.io/en/latest/audit/getting-started-audit.html
 
-[goss documentation]: (https://github.com/krameff/goss/blob/master/README.md)
+[Syver documentation]: https://github.com/krameff/syver/blob/main/docs/index.md
 
-[Goss]: - [goss documentation](https://github.com/krameff/goss/blob/master/docs/index.md)
-- [CIS standards](https://www.cisecurity.org)
+[goss vs Syver]: https://github.com/krameff/syver/blob/main/docs/goss-vs-syver.md
+
+[Syver]: https://github.com/krameff/syver
 
 [MindPoint Group]: https://mindpointgroup.com/cybersecurity-consulting/automate/baseline-modernization#GH_LockdownReadMe
 [Discord Community Discussions]: https://www.lockdownenterprise.com/discord

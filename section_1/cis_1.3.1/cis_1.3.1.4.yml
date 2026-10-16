@@ -15,7 +15,7 @@ kernel-param:
 command:
   apparmor_restrict_unconfined_conf:
     title: 1.3.1.4 | Ensure kernel.apparmor_restrict_unprivileged_unconfined is enabled | conf
-    exec: grep -r "kernel\.apparmor_restrict_unprivileged_unconfined" /etc/sysctl.conf /etc/sysctl.d/
+    exec: grep -r "kernel\.apparmor_restrict_unprivileged_unconfined" $([ -f /etc/sysctl.conf ] && echo /etc/sysctl.conf) /etc/sysctl.d/
     exit-status:
       or:
       - 0

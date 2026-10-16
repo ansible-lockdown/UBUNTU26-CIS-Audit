@@ -5,10 +5,10 @@
 command:
   auditd_9_config:
     title: 6.2.3.9 | Ensure events that modify /etc/NetworkManager directory are collected | Config
-    exec: grep system-locale /etc/audit/rules.d/*.rules
+    exec: grep -h system-locale /etc/audit/rules.d/*.rules; [ -d /etc/NetworkManager ] || echo "NetworkManager not present"
     exit-status: 0
     stdout:
-    - '-w /etc/NetworkManager/ -p wa -k system-locale'
+    - '/(dir=\/etc\/NetworkManager\/ -F perm=wa -k system-locale|NetworkManager not present)/'
     meta:
       server: 2
       workstation: 2

@@ -18,7 +18,7 @@ command:
       or:
       - 0
       - 2
-    exec: 'grep "^fs\.protected_symlinks" /etc/sysctl.conf /etc/sysctl.d/* | cut -d ":" -f2'
+    exec: 'grep "^fs\.protected_symlinks" $([ -f /etc/sysctl.conf ] && echo /etc/sysctl.conf) /etc/sysctl.d/* | cut -d ":" -f2'
     stdout:
     - '/fs.protected_symlinks\s*=\s*1/'
     meta:

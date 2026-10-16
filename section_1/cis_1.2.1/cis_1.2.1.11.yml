@@ -6,9 +6,9 @@ command:
   apt_sources_list_d_https:
     title: 1.2.1.11 | Ensure repositories are set to https in /etc/apt/sources.list.d directory
     exit-status: 0
-    exec: grep -Ps -- '^\s*(deb(-src)?\s+http://|URIs:\s+http://)' /etc/apt/sources.list.d/* 2>/dev/null ; true
+    exec: grep -Ps -- '^\s*deb(-src)?\s+http://' /etc/apt/sources.list.d/*.list 2>/dev/null ; grep -Ps -- '^\s*URIs:\s+http://' /etc/apt/sources.list.d/*.sources 2>/dev/null ; true
     stdout:
-    - '/^$/'
+    - '!/./'
     meta:
       server: 1
       workstation: 1

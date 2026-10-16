@@ -18,7 +18,7 @@ command:
       or:
       - 0
       - 2
-    exec: 'grep "^kernel\.yama.ptrace_scope" /etc/sysctl.conf /etc/sysctl.d/* | cut -d ":" -f2'
+    exec: 'grep "^kernel\.yama.ptrace_scope" $([ -f /etc/sysctl.conf ] && echo /etc/sysctl.conf) /etc/sysctl.d/* | cut -d ":" -f2'
     stdout:
     - '/kernel.yama.ptrace_scope\s*=\s*1/'
     meta:

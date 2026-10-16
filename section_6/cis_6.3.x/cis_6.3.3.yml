@@ -13,7 +13,6 @@ command:
     - '/sbin/auditd p+i+n+u+g+s+b+acl+xattrs+sha512'
     - '/sbin/ausearch p+i+n+u+g+s+b+acl+xattrs+sha512'
     - '/sbin/aureport p+i+n+u+g+s+b+acl+xattrs+sha512'
-    - '/sbin/autrace p+i+n+u+g+s+b+acl+xattrs+sha512'
     - '/sbin/augenrules p+i+n+u+g+s+b+acl+xattrs+sha512'
     meta:
       server: 2

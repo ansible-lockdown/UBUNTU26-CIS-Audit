@@ -5,12 +5,12 @@
 command:
   auditd_8_config:
     title: 6.2.3.8 | Ensure events that modify the system's network environment are collected | Config
-    exec: grep system-locale /etc/audit/rules.d/*.rules
+    exec: grep -h system-locale /etc/audit/rules.d/*.rules; [ -d /etc/network/interfaces.d ] || echo "interfaces.d not present"
     exit-status: 0
     stdout:
-    - '-w /etc/networks -p wa -k system-locale'
-    - '-w /etc/network -p wa -k system-locale'
-    - '-w /etc/netplan -p wa -k system-locale'
+    - '-a always,exit -F arch=b64 -F path=/etc/network/interfaces -F perm=wa -k system-locale'
+    - '/(dir=\/etc\/network\/interfaces\.d -F perm=wa -k system-locale|interfaces\.d not present)/'
+    - '-a always,exit -F arch=b64 -F dir=/etc/netplan/ -F perm=wa -k system-locale'
     meta:
       server: 2
       workstation: 2

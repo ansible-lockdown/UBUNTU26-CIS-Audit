@@ -18,7 +18,7 @@ command:
       or:
       - 0
       - 2
-    exec: 'grep "^kernel\.kptr_restrict" /etc/sysctl.conf /etc/sysctl.d/* | cut -d ":" -f2'
+    exec: 'grep "^kernel\.kptr_restrict" $([ -f /etc/sysctl.conf ] && echo /etc/sysctl.conf) /etc/sysctl.d/* | cut -d ":" -f2'
     stdout:
     - '/kernel.kptr_restrict\s*=\s*(1|2)/'
     meta:

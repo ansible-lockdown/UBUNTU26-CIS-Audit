@@ -1,5 +1,60 @@
 # Initial Ubuntu26 CIS V1.0.0 August 2026
 
+## CIS Benchmark 1.0.0
+
+## October 2026 - QA fixes
+
+- run_audit.sh uses syver v0.15.1 by default
+- README describes syver
+- README audit options and link block corrected
+- LICENSE: company name updated to MindPoint Group - A Quantum Sky Company
+- meta levels and level gates aligned to Profile Applicability
+- 5.1.4 public host key perms test fixed: variable name, mask /133
+- 5.1.4 find -name globs quoted
+- 6.1.1.1.3 checks the effective ForwardToSyslog value is yes
+- 6.1.1.1.5 to 6.1.1.1.7 journald tests read systemd-analyze cat-config
+- 7.2.5 to 7.2.8 duplicate checks sort before uniq -d
+- 6.2.4.4 accepts any audit log directory mode without group write or other access
+- 5.1.6 sshd_config.d banner check reads the drop-in files
+- 5.2.3 checks journal sudo events or the sudo logfile setting
+- 5.4.2.8 uses the benchmark valid shell check
+- sysctl config tests no longer fail when /etc/sysctl.conf is absent
+- 2.2.1 gated on ubtu26cis_nis_client_required
+- 2.1.3 checks the kea packages and units
+- 1.2.1.3, 1.2.1.6 and 1.2.1.9 mode patterns accept stat output without a leading zero
+- 1.2.1.10 passes when sources.list has no http entries
+- 1.2.1.11 checks only .list and .sources files
+- 1.6.9 checks the motd files named in /etc/pam.d
+- 4.1.5 accepts disabled (routed) with a DROP or REJECT forward policy
+- 5.4.2.4 accepts a locked root account
+- 5.1.14 requires both post-quantum key exchange algorithms
+- 5.1.6 to 5.1.24 sshd tests check the effective config from sshd -T
+- 5.1.5 checks the CIS sshd drop-in
+- 1.1.1.11 reports clearly when fs_with_cves.sh is not present
+- 1.1.2.1.2 to 1.1.2.1.4 check tmp.mount when ubtu26cis_tmp_svc is true
+- 1.5.11 and 1.5.12 check the coredump.conf.d drop-in
+- 2.4.2.1 accepts at not installed, group daemon or root, mode 640 or stricter
+- 5.4.3.2 accepts typeset -xr TMOUT and rejects TMOUT=0
+- 1.7.1 to 1.7.5 test the dconf files the role writes, section headers matched literally
+- 1.7.3 to 1.7.5 lock file names and patterns corrected, autorun-never typo fixed
+- 5.1.3 find -name globs quoted
+- 5.2.2 sudoers check reports any !use_pty override
+- 5.4.1.5 per-user INACTIVE check uses the benchmark condition
+- 5.4.2.6 checks /root/.bashrc and /root/.profile
+- 6.2.3.35 matches the -e 2 line explicitly
+- 6.2.3.x expect the benchmark path and dir rules instead of -w watches
+- 6.2.3.4 checks the clock_settime a0 filter and the localtime-change rule
+- 6.2.3.8 and 6.2.3.9 accept an absent interfaces.d or NetworkManager directory
+- 6.2.4.3 flags log files not owned by group root or adm
+- 1.6.12 meta workstation set to NA
+- 6.3.2 defaults to the timer; service may be static or enabled, cron check requires an aide job
+- 3.1.2 wireless check quoted
+- 5.2.7 su group matched by name
+- 6.1.2.4 expects auth logging in /var/log/auth.log
+- 6.2.3.18, 6.2.3.25, 6.2.3.32 and 6.2.3.33 match the benchmark syscall rules
+- 6.2.4.8 to 6.2.4.10 and 6.3.3 no longer list autrace
+- unused ubtu26cis_ipv4_required and ubtu26cis_legacy_boot removed
+
 ## September 2026 - contributing guidelines
 
 - CONTRIBUTING.md replaced with the canonical org-wide copy. It now states that pull

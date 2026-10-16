@@ -8,8 +8,8 @@ command:
     exec: grep identity /etc/audit/rules.d/*.rules
     exit-status: 0
     stdout:
-    - '-w /etc/pam.conf -p wa -k identity'
-    - '-w /etc/pam.d -p wa -k identity'
+    - '-a always,exit -F arch=b64 -F path=/etc/pam.conf -F perm=wa -k identity'
+    - '-a always,exit -F arch=b64 -F dir=/etc/pam.d -F perm=wa -k identity'
     meta:
       server: 2
       workstation: 2
