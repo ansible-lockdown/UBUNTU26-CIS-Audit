@@ -470,6 +470,8 @@ ubtu26cis_rule_7_2_10: true
 ubtu26cis_rule_7_2_11: true
 
 ## System functionality configuration variables
+ubtu26cis_sshd_cis_conf: /etc/ssh/sshd_config.d/00-cis-sshd.conf
+ubtu26cis_tmp_svc: false
 ##
 ## There are certain functionalities of a system
 ## that may require either to skip certain CIS rules

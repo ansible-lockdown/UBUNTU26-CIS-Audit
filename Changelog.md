@@ -28,6 +28,13 @@
 - 4.1.5 accepts disabled (routed) with a DROP or REJECT forward policy
 - 5.4.2.4 accepts a locked root account
 - 5.1.14 requires both post-quantum key exchange algorithms
+- 5.1.6 to 5.1.24 sshd tests check the effective config from sshd -T
+- 5.1.5 checks the CIS sshd drop-in
+- 1.1.1.11 reports clearly when fs_with_cves.sh is not present
+- 1.1.2.1.2 to 1.1.2.1.4 check tmp.mount when ubtu26cis_tmp_svc is true
+- 1.5.11 and 1.5.12 check the coredump.conf.d drop-in
+- 2.4.2.1 accepts at not installed, group daemon or root, mode 640 or stricter
+- 5.4.3.2 accepts typeset -xr TMOUT and rejects TMOUT=0
 - 1.7.1 to 1.7.5 test the dconf files the role writes, section headers matched literally
 - 1.7.3 to 1.7.5 lock file names and patterns corrected, autorun-never typo fixed
 - 5.1.3 find -name globs quoted

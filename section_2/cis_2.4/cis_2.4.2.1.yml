@@ -2,11 +2,13 @@
 
 {{ if .Vars.ubtu26cis_level_1 }}
   {{ if .Vars.ubtu26cis_rule_2_4_2_1 }}
-file:
-  at_deny_absent:
-    title: 2.4.2.1 | Ensure access to at is configured
-    path: /etc/at.deny
-    exists: false
+command:
+  at_deny:
+    title: 2.4.2.1 | Ensure access to at is configured | at.deny
+    exec: if [ -e /etc/at.deny ]; then stat -Lc '%a %U %G' /etc/at.deny; else echo absent; fi
+    exit-status: 0
+    stdout:
+    - '/^(absent|[0-6][0-4]0 root (root|daemon))$/'
     meta:
       server: 1
       workstation: 1
@@ -15,12 +17,12 @@ file:
       NIST800-53R5:
       - AC-3
       - MP-2
-  /etc/at.allow:
-    title: 2.4.2.1 | Ensure access to at is configured
-    exists: true
-    owner: root
-    group: root
-    mode: "0640"
+  at_allow:
+    title: 2.4.2.1 | Ensure access to at is configured | at.allow
+    exec: if dpkg-query -s at >/dev/null 2>&1; then stat -Lc '%a %U %G' /etc/at.allow 2>&1; else echo "at not installed"; fi
+    exit-status: 0
+    stdout:
+    - '/^(at not installed|[0-6][0-4]0 root (root|daemon))$/'
     meta:
       server: 1
       workstation: 1

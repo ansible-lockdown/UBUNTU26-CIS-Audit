@@ -6,7 +6,7 @@ command:
   cve_fs:
     title: 1.1.1.11 | Ensure unused filesystems kernel modules are not available
     exit-status: 0
-    exec: {{ .Vars.ubtu26cis_temp_exec_location }}/fs_with_cves.sh
+    exec: f="{{ .Vars.ubtu26cis_temp_exec_location }}/fs_with_cves.sh"; if [ -x "$f" ]; then "$f"; else echo "fs_with_cves.sh not present - run the role or review kernel modules manually"; exit 1; fi
     stdout:
     - '!/.*<- CVE exists!/'
     meta:
