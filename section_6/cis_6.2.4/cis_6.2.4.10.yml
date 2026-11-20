@@ -2,13 +2,13 @@
 
 {{ if .Vars.ubtu26cis_level_2 }}
   {{ if .Vars.ubtu26cis_rule_6_2_4_10 }}
-command:
-  audit_tools_group:
+file:
+{{- range mkSlice "/sbin/auditctl" "/sbin/aureport" "/sbin/ausearch" "/sbin/auditd" "/sbin/augenrules" }}
+  audit_tools_group_{{ . }}:
     title: 6.2.4.10 | Ensure audit tools group owner is configured
-    exec: for f in /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/auditd /sbin/augenrules; do [ -e "$f" ] && stat -c "%n_%G" "$f"; done; true
-    exit-status: 0
-    stdout:
-    - '/.*_root$/'
+    path: {{ . }}
+    exists: true
+    group: root
     meta:
       server: 2
       workstation: 2
@@ -16,5 +16,6 @@ command:
       - 6.2.4.10
       NIST800-53R5:
       - AU-3
+{{- end }}
   {{ end }}
 {{ end }}

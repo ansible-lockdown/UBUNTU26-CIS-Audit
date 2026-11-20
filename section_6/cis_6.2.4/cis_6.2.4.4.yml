@@ -2,13 +2,15 @@
 
 {{ if .Vars.ubtu26cis_level_2 }}
   {{ if .Vars.ubtu26cis_rule_6_2_4_4 }}
-command:
+{{- if $logdir := or (and (glob "/etc/audit/auditd.conf") (readFile "/etc/audit/auditd.conf" | findStringSubmatch `(?m)^\s*log_file\s*=\s*(?P<dir>\S*)/[^/\s]*\s*$` | get "dir")) "/etc/audit/auditd.conf-not-found" }}
+file:
   audit_logfile_dir_perms:
     title: 6.2.4.4 | Ensure the audit log file directory mode is configured
-    exec: for dir in `dirname \`grep ^log_file /etc/audit/auditd.conf | awk '{ print $NF }'\``; do stat -Lc " %n_%a" $dir; done
-    exit-status: 0
-    stdout:
-    - '/.*_7[0145]0$/'
+    path: {{ $logdir }}
+    exists: true
+    filetype: directory
+    mode:
+      match-regexp: '^[0-7][0-7][0145]0$'
     meta:
       server: 2
       workstation: 2
@@ -16,5 +18,6 @@ command:
       - 6.2.4.4
       NIST800-53R5:
       - AU-3
+{{- end }}
   {{ end }}
 {{ end }}

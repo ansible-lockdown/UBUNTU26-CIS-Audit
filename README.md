@@ -27,14 +27,14 @@ The listed variable for every control/benchmark can be turned on/off or section
 
 ## Requirements
 
-syver >= 0.15.1 - the continuation of goss, reading the same goss file format. Syver replaces goss as it is a signed fork that is regularly updated.
+syver >= 0.20.0 - the continuation of goss. The audit file is syver.yml. Syver replaces goss as it is a signed fork that is regularly updated.
 root privileges
 
 ## Branches
 
 If running as part of the ansible playbook, this will pull in the relevant branch for the version of benchmark you are remediating.
 
-- e.g. v1.0.0 will pull in branch benchmark-v1.0.0
+- e.g. v1.0.0 will pull in branch benchmark_1.0.0
 
 Devel is normally the latest benchmark version, so maybe different from the version of benchmark you wish to test.
 Details will show in the README as part of the remediation as to the benchmark for the version it is written for.

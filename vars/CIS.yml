@@ -18,6 +18,10 @@ ubtu26cis_section7: true
 ubtu26cis_level_1: true
 ubtu26cis_level_2: true
 
+# CIS profile the audit scores against: Server or Workstation
+# run_audit.sh sets it: Server, or Workstation with -w
+system_type: Server
+
 
 #  to enable rules that may have IO impact on a system e.g. full filesystem scans or CPU heavy
 run_heavy_tests: true
@@ -689,6 +693,17 @@ ubtu26cis_sshd_client_alive_count_max: 3
 ubtu26cis_pass_max_days: 365
 ubtu26cis_pass_min_days: 1
 ubtu26cis_pass_warn_age: 7
+
+# existing users only changed when disruption_high is true
+ubtu26cis_disruption_high: true
+# 5.4.2.7 system accounts allowed a shell, and the connecting user (set by the role)
+ubtu26cis_system_users_shell: []
+ubtu26cis_playbook_user: ''
+
+## 5.2.4 users the role leaves with NOPASSWD in sudoers
+ubtu26cis_sudoers_exclude_nopasswd_list:
+  - ec2-user
+  - vagrant
 
 # set sugroup if differs from wheel
 ubtu26cis_sugroup: nosugroup

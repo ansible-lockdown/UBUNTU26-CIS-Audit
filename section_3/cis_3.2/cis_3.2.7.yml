@@ -6,8 +6,8 @@ command:
   unneeded_network_protocol_modules:
     title: 3.2.7 | Ensure unneeded network protocol kernel modules are not available
     exit-status: 0
-    exec: |-
-      lsmod | awk '{print $1}' | grep -Ff <(find /lib/modules/"$(uname -r)"/kernel/net -type f -name '*.ko*' -printf '%f\n' 2>/dev/null | sed -E 's/\.ko(\.[xg]z|\.zst)?$//' | sort -u) || true
+    exec: |
+      { find /lib/modules/"$(uname -r)"/kernel/net -type f -name '*.ko*' -printf '%f\n' 2>/dev/null | sed -E 's/\.ko(\.[xg]z|\.zst)?$//' | tr '-' '_'; echo "--loaded--"; lsmod | awk 'NR > 1 {print $1}'; } | awk '$0 == "--loaded--" {s = 1; next} !s {m[$0]; next} ($1 in m) {print}'
     stdout:
     - '!/.+/'
     meta:

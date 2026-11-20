@@ -9,6 +9,7 @@ file:
     exists: true
     {{ if .Vars.ubtu26cis_squashfs_skip }}
     skip: true
+    skip-reason: squashfs is in use (ubtu26cis_squashfs_skip is true)
     {{ end }}
     contents:
     - '/^install squashfs /bin/(true|false)/'
@@ -23,6 +24,7 @@ file:
     exists: true
     {{ if .Vars.ubtu26cis_squashfs_skip }}
     skip: true
+    skip-reason: squashfs is in use (ubtu26cis_squashfs_skip is true)
     {{ end }}
     contents:
     - '/^blacklist squashfs/'

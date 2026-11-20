@@ -1,15 +1,19 @@
 ---
 
 {{ if .Vars.ubtu26cis_level_2 }}
-  {{ if .Vars.ubtu26cis_desktop_required }}
     {{ if .Vars.ubtu26cis_rule_1_7_7 }}
+{{- $x11_session := false }}
+{{- range glob "/usr/share/xsessions/*.desktop" }}{{ if not (regexMatch "wayland" .) }}{{ $x11_session = true }}{{ end }}{{ end }}
 file:
   gdm_xwayland:
     title: 1.7.7 | Ensure Xwayland is configured
+    skip: {{ if or (not .Vars.ubtu26cis_desktop_required) (not .Discovered.xorg_installed) (not $x11_session) }}true{{ else }}false{{ end }}
+    skip-reason: ubtu26cis_desktop_required is false, or no X11 session is installed (xserver-xorg-core and a non-wayland /usr/share/xsessions entry), so the role leaves Wayland enabled
     path: /etc/gdm3/custom.conf
     exists: true
     contents:
-    - '/^WaylandEnable=false/'
+    - '/^\s*WaylandEnable\s*=\s*false/'
+    - '!/^\s*WaylandEnable\s*=\s*true/'
     meta:
       server: 2
       workstation: 2
@@ -17,5 +21,4 @@ file:
       - 1.7.7
       NIST800-53R5: CM-7
     {{ end }}
-  {{ end }}
 {{ end }}

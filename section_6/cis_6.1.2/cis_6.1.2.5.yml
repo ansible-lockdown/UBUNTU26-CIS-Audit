@@ -2,19 +2,19 @@
 
 {{ if .Vars.ubtu26cis_level_1 }}
   {{ if .Vars.ubtu26cis_rule_6_1_2_5 }}
-    {{ if not .Vars.ubtu26cis_remote_log_server }}
 command:
   remote_syslog:
     title: 6.1.2.5 | Ensure rsyslog is configured to send logs to a remote log host
-    exec: 'grep -E "action.*omfwd.*target" /etc/rsyslog.conf /etc/rsyslog.d/*.conf'
-    exit-status:
-      or:
-        - 0
-        - 2
+    {{ if .Vars.ubtu26cis_rule_6_1_2_1 }}
+    depends-on:
+    - package:rsyslog
+    {{ end }}
+    exec: grep -hEv '^[[:space:]]*#' /etc/rsyslog.conf /etc/rsyslog.d/*.conf 2>/dev/null | tr '\n' ' '
+    exit-status: 0
     stdout:
-    - '*.* action(type="omfwd" target="{{ .Vars.ubtu26cis_remote_log_server }}"'
-    - 'port="{{ .Vars.ubtu26cis_remote_log_port }}"'
-    - 'protocol="{{ .Vars.ubtu26cis_remote_log_protocol }}"'
+    - '/action\(type="omfwd"\s+target="{{ .Vars.ubtu26cis_remote_log_server }}"\s+port="{{ .Vars.ubtu26cis_remote_log_port }}"\s+protocol="{{ .Vars.ubtu26cis_remote_log_protocol }}"/'
+    skip: {{ if or (not .Vars.ubtu26cis_remote_log_server) .Vars.ubtu26cis_system_is_log_server }}true{{ else }}false{{ end }}
+    skip-reason: ubtu26cis_remote_log_server is not set, or ubtu26cis_system_is_log_server is true
     meta:
       server: 1
       workstation: 1
@@ -22,6 +22,5 @@ command:
       - 6.1.2.5
       NIST800-53R5:
       - AU-6
-    {{ end }}
   {{ end }}
 {{ end }}

@@ -7,7 +7,6 @@ service:
     title: 1.6.11 | Ensure update-notifier-motd.service is not in use
     enabled: false
     running: false
-    skip: true
     meta:
       server: 1
       workstation: 1
