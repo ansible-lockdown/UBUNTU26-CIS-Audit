@@ -31,6 +31,10 @@ discovery:
     xserver-xorg-core:
       register: xorg_installed
       installed: true
+    # 2.1.1 autofs.service is only checked for masked when autofs is installed
+    autofs:
+      register: autofs_installed
+      installed: true
   # 7.1.10 opasswd files the benchmark says may not exist
   file:
     /etc/security/opasswd:

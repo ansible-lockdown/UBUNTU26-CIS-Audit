@@ -660,6 +660,9 @@ ubtu26cis_bluetooth_mask: false
 # Its default value is `/etc/sysctl.conf`.
 ubtu26cis_sysctl_network_conf: /etc/sysctl.d/97_cis_network.conf
 
+## Control 3.2.7 - site list of unneeded network protocol kernel modules
+ubtu26cis_net_modules_unneeded: []
+
 #
 ### Section 4 - Host Based Firewall (UFW only)
 #
@@ -699,6 +702,9 @@ ubtu26cis_disruption_high: true
 # 5.4.2.7 system accounts allowed a shell, and the connecting user (set by the role)
 ubtu26cis_system_users_shell: []
 ubtu26cis_playbook_user: ''
+# 5.4.1.5 inactive password lock days; root is left out of the user check when root is used to connect
+ubtu26cis_pass_inactive: 45
+ubtu26cis_uses_root: false
 
 ## 5.2.4 users the role leaves with NOPASSWD in sudoers
 ubtu26cis_sudoers_exclude_nopasswd_list:
@@ -725,3 +731,13 @@ ubtu26cis_remote_log_protocol: tcp
 # 6.1.2
 # aide setup via - cron, timer
 ubtu26cis_aide_scan: timer
+
+# 6.1.3.1 log files left out of the permissions check, as extended regex matched against the path
+ubtu26cis_logfile_perms_exclude: []
+
+# Section 7
+# 7.1.12 paths left out of the unowned files search (find expression)
+ubtu26cis_exclude_unowned_search_path: '\( ! -path "/run/user/*" -a ! -path "/proc/*" -a ! -path "*/containerd/*" -a ! -path "*/kubelet/pods/*" -a ! -path "*/kubelet/plugins/*" -a ! -path "/sys/fs/cgroup/memory/*" -a ! -path "/var/*/private/*" -a ! -path "/snap/*" \)'
+# 7.2.10 and 7.2.11 dot file and directory permissions are only changed when true
+ubtu26cis_dotperm_ansiblemanaged: true
+ubtu26cis_dotdir_include_root: true

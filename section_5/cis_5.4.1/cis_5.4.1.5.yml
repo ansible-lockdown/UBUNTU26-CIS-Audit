@@ -21,7 +21,7 @@ command:
     skip: {{ not .Vars.ubtu26cis_disruption_high }}
     skip-reason: ubtu26cis_disruption_high is false, the role does not change existing accounts
     exec: |
-      awk -F: '($2~/^\$.+\$/) {if($7 == "" || $7 > 45 || $7 < 0) print "FAIL: " $1 " INACTIVE: " $7}' /etc/shadow
+      awk -F: -v l_max='{{ .Vars.ubtu26cis_pass_inactive }}' -v l_skip_root='{{ if .Vars.ubtu26cis_uses_root }}1{{ else }}0{{ end }}' 'BEGIN { if (l_max !~ /^[0-9]+$/ || l_max + 0 > 45) l_max = 45 } ($2 ~ /^\$.+\$/ && !(l_skip_root == 1 && $1 == "root")) { if ($7 == "" || $7 + 0 > l_max + 0 || $7 + 0 < 0) print "FAIL: " $1 " INACTIVE: " $7 }' /etc/shadow
       echo "scan_done"
     exit-status: 0
     stdout:

@@ -47,6 +47,27 @@
 - 1.5.7 passes when apport is not installed
 - toJson replaced by toJSON
 - vars: system_type, ubtu26cis_disruption_high, ubtu26cis_system_users_shell, ubtu26cis_playbook_user, ubtu26cis_sudoers_exclude_nopasswd_list
+- 5.4.2.1 - 5.4.2.3 fail on any extra UID or GID 0 entry
+- 5.4.2.6 weak umask in /root/.profile or /root/.bashrc fails
+- 5.4.3.3 weak umask in /etc/profile, /etc/profile.d or login.defs fails
+- 5.4.3.2 TMOUT checked in every file, readonly and exported
+- 5.4.3.1 commented nologin lines ignored
+- 5.2.6 timestamp_timeout 0 to 15 accepted
+- 7.1.11, 7.1.12 mounts read with findmnt, benchmark prune paths
+- 1.6.1 motd and motd.d checked for system information in both motd modes
+- 7.2.10, 7.2.11 local interactive users per the benchmark, compliant .netrc accepted
+- 7.2.10, 7.2.11 skipped unless ubtu26cis_dotperm_ansiblemanaged and ubtu26cis_disruption_high
+- 7.2.11 root skipped when ubtu26cis_dotdir_include_root is false
+- 5.3.3.2.1, 5.3.3.2.2, 5.3.3.3.1 any compliant value accepted
+- 1.6.6 motd files 644 or more restrictive, update-motd.d scripts 755 or more restrictive
+- 2.1.1 masked test skipped when autofs is not installed
+- 2.3.3.2 running chronyd user checked
+- 6.1.3.1 ubtu26cis_logfile_perms_exclude paths skipped
+- 5.4.1.5 benchmark INACTIVE check, root skipped only with ubtu26cis_uses_root
+- 3.2.7 site module list checked, skipped with a reason when empty
+- 6.1.2.7 /etc/logrotate.d/rsyslog rotate checked
+- vars: ubtu26cis_net_modules_unneeded, ubtu26cis_pass_inactive, ubtu26cis_uses_root, ubtu26cis_logfile_perms_exclude
+- vars: ubtu26cis_exclude_unowned_search_path, ubtu26cis_dotperm_ansiblemanaged, ubtu26cis_dotdir_include_root
 
 ## October 2026 - QA fixes
 

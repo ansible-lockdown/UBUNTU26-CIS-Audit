@@ -5,11 +5,28 @@
 command:
   check_timeout:
     title: 5.4.3.2 | Ensure default user shell timeout is configured
-    exec: 'grep TMOUT /etc/profile.d/*.sh /etc/profile /etc/profile.d/*.sh| cut -d ":" -f2'
+    exec: |
+      l_set=0
+      for l_file in $(grep -Pls -- '^([^#\n\r]+)?\bTMOUT\b' /etc/*bashrc /etc/profile /etc/profile.d/*.sh); do
+        l_vals="$(grep -Po -- '^([^#\n\r]+)?\bTMOUT=\d+\b' "$l_file" | awk -F= '{print $NF}')"
+        if [ -z "$l_vals" ]; then
+          echo "FAIL: $l_file references TMOUT but does not set a value"
+          continue
+        fi
+        l_set=1
+        grep -Pq -- '^\h*(typeset\h\-xr\hTMOUT=\d+|([^#\n\r]+)?\breadonly\h+TMOUT\b)' "$l_file" || echo "FAIL: $l_file TMOUT is not marked readonly"
+        grep -Pq -- '^\h*(typeset\h\-xr\hTMOUT=\d+|([^#\n\r]+)?\bexport\b([^#\n\r]+\b)?TMOUT\b)' "$l_file" || echo "FAIL: $l_file TMOUT is not exported"
+        for l_val in $l_vals; do
+          { [ "$l_val" -gt 0 ] && [ "$l_val" -le 900 ]; } || echo "FAIL: $l_file TMOUT=$l_val is out of range"
+        done
+      done
+      [ "$l_set" -eq 1 ] && echo "tmout_set"
+      echo "scan_done"
     exit-status: 0
     stdout:
-    - '/^\s*(typeset -xr |readonly )?TMOUT=([1-9][0-9]?|[1-8][0-9]{2}|900)\s*$/'
-    - '!/TMOUT=0\b/'
+    - '/^tmout_set$/'
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1
