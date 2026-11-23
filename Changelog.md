@@ -2,6 +2,73 @@
 
 ## CIS Benchmark 1.0.0
 
+## November 2026 - QA fixes
+
+- run_audit.sh uses syver v0.20.0 by default
+- goss.yml renamed syver.yml, run_audit.sh default AUDIT_FILE syver.yml
+- run_audit.sh os name/version default when /etc/os-release is missing
+- README audit content example corrected
+- .gitignore secret and QA artifact patterns
+- 1.1.1.7 squashfs skip given a reason
+- 1.1.2.1.2 - 1.1.2.1.4 check tmp.mount or /etc/fstab, whichever mounts /tmp
+- 1.1.2.3.x - 1.1.2.7.x mount option checks skipped with a reason when the partition does not exist
+- 1.1.2.5.1 meta key NIST800-53R5
+- 1.6.11, 1.6.12 no longer always skipped
+- 1.7.7 skipped when no X11 session is installed
+- 2.1.21 skipped when ubtu26cis_xwindow_server or ubtu26cis_desktop_required
+- 2.1.19 nginx-plus package check
+- 2.1.22 MTA test no longer inverted, checks postconf inet_interfaces
+- 2.1.x, 3.1.3 service names match the role, required services skipped with a reason
+- 2.2.x client, 3.3.x router, IPv6, log server, AppArmor, desktop and AIDE opt-outs skipped with a reason
+- 3.3.x router skips follow the benchmark
+- 3.2.1 - 3.2.6 kernel module checks use modprobe --showconfig and /sys/module
+- 3.2.7 runs under dash (addresses https://github.com/ansible-lockdown/UBUNTU26-CIS-Audit/issues/2) - Thank you @Doriangaensslen
+- 3.3.x sysctl checks read the effective config
+- 5.1.3 private host key check drops the sudo wrapper, root group keys 0600
+- 5.2.4 excludes ubtu26cis_sudoers_exclude_nopasswd_list users
+- 5.3.2.x, 5.3.3.3.x, 5.3.3.4.1, 5.4.1.x, 5.4.2.7, 5.4.2.8 skipped with a reason unless ubtu26cis_disruption_high
+- 5.3.3.4.1, 5.3.3.4.2 no bash brace expansion
+- 5.4.1.1, 5.4.1.2, 5.4.1.3, 5.4.1.5 report failing accounts, playbook user excluded where the role leaves it
+- 5.4.1.3 login.defs pattern accepts 10 - 69
+- 5.4.2.5 root path checks for ::, trailing :, ., owner, mode and missing directories
+- 5.4.2.7 ubtu26cis_system_users_shell accounts and the playbook user excluded
+- 6.1.2.3, 6.1.2.4 read rsyslog.conf and rsyslog.d, optional - before /var/log/messages (addresses https://github.com/ansible-lockdown/UBUNTU26-CIS-Audit/issues/2) - Thank you @Doriangaensslen
+- 6.1.2.7 checks logrotate.conf frequency and rotate count
+- 6.1.2.5, 6.1.2.6 log server opt-outs skipped with a reason
+- 6.2.2.4 key renamed, collided with 6.2.2.3
+- 6.2.4.1 - 6.2.4.4 read the audit log directory from auditd.conf
+- 6.2.4.5 - 6.2.4.7 audit config file checks use find
+- 6.2.4.8 - 6.2.4.10 audit tools checked from a fixed list, autrace removed
+- 7.1.10 tests opasswd and opasswd.old, each skipped with a reason when absent
+- 7.1.13 uses the benchmark script, squashfs mounts excluded
+- 7.2.3 no longer writes to /tmp
+- 7.2.9 checks local interactive users from /etc/passwd
+- mode or more restrictive for 1.2.1.x, 1.4.2, 1.6.7, 1.6.8, 1.6.10, 2.4.1.x, 5.1.1, 7.1.x
+- 1.5.7 passes when apport is not installed
+- toJson replaced by toJSON
+- vars: system_type, ubtu26cis_disruption_high, ubtu26cis_system_users_shell, ubtu26cis_playbook_user, ubtu26cis_sudoers_exclude_nopasswd_list
+- 5.4.2.1 - 5.4.2.3 fail on any extra UID or GID 0 entry
+- 5.4.2.6 weak umask in /root/.profile or /root/.bashrc fails
+- 5.4.3.3 weak umask in /etc/profile, /etc/profile.d or login.defs fails
+- 5.4.3.2 TMOUT checked in every file, readonly and exported
+- 5.4.3.1 commented nologin lines ignored
+- 5.2.6 timestamp_timeout 0 to 15 accepted
+- 7.1.11, 7.1.12 mounts read with findmnt, benchmark prune paths
+- 1.6.1 motd and motd.d checked for system information in both motd modes
+- 7.2.10, 7.2.11 local interactive users per the benchmark, compliant .netrc accepted
+- 7.2.10, 7.2.11 skipped unless ubtu26cis_dotperm_ansiblemanaged and ubtu26cis_disruption_high
+- 7.2.11 root skipped when ubtu26cis_dotdir_include_root is false
+- 5.3.3.2.1, 5.3.3.2.2, 5.3.3.3.1 any compliant value accepted
+- 1.6.6 motd files 644 or more restrictive, update-motd.d scripts 755 or more restrictive
+- 2.1.1 masked test skipped when autofs is not installed
+- 2.3.3.2 running chronyd user checked
+- 6.1.3.1 ubtu26cis_logfile_perms_exclude paths skipped
+- 5.4.1.5 benchmark INACTIVE check, root skipped only with ubtu26cis_uses_root
+- 3.2.7 site module list checked, skipped with a reason when empty
+- 6.1.2.7 /etc/logrotate.d/rsyslog rotate checked
+- vars: ubtu26cis_net_modules_unneeded, ubtu26cis_pass_inactive, ubtu26cis_uses_root, ubtu26cis_logfile_perms_exclude
+- vars: ubtu26cis_exclude_unowned_search_path, ubtu26cis_dotperm_ansiblemanaged, ubtu26cis_dotdir_include_root
+
 ## October 2026 - QA fixes
 
 - run_audit.sh uses syver v0.15.1 by default

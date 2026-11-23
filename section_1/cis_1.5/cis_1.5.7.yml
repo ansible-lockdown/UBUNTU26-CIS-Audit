@@ -2,25 +2,29 @@
 
 {{ if .Vars.ubtu26cis_level_1 }}
   {{ if .Vars.ubtu26cis_rule_1_5_7 }}
-package:
+service:
   apport:
-    title: 1.5.7 | Ensure Automatic Error Reporting is configured | Package
-    installed: false
+    title: 1.5.7 | Ensure Automatic Error Reporting is configured | service not active
+    running: false
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 1.5.7
+      CIS_ID:
+      - 1.5.7
+      NIST800-53R5: NA
 file:
-  error_report_apport_disable:
-    title: 1.5.7 | Ensure Automatic Error Reporting is configured | disabled
+  /etc/default/apport:
+    title: 1.5.7 | Ensure Automatic Error Reporting is configured | enabled=0
+    skip: {{ not .Discovered.apport_installed }}
+    skip-reason: apport is not installed
     exists: true
-    path: /etc/default/apport
     contents:
-    - 'enabled=0'
-    - '!/enabled=1/'
+    - '!/(?i)^\s*enabled\s*=\s*[^0]/'
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 1.5.7
+      CIS_ID:
+      - 1.5.7
+      NIST800-53R5: NA
   {{ end }}
 {{ end }}

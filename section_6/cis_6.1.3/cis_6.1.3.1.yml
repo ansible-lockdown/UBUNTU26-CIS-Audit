@@ -6,9 +6,22 @@ command:
   logfile_configured:
     title: 6.1.3.1 | Ensure access to all logfiles has been configured
     exec: |
-      find /var/log/ -type f \( -name 'lastlog' -o -name 'wtmp' -o -name 'btmp' \) -perm /g+x,o+wx -exec ls -l "{}" + ; find /var/log/ -type f \( -name 'secure' -o -name 'auth*' -o -name 'syslog' -o -name 'messages' \) -perm /u+x,g+wx,o+rwx -exec ls -l "{}" +; find /var/log/ -type f \( -name 'SSSD' -o -name 'sssd' -o -name 'gdm*' \) -perm /ug+x,o+rwx -exec ls -l "{}" +
+      l_ex='{{ range $i, $e := .Vars.ubtu26cis_logfile_perms_exclude }}{{ if $i }}|{{ end }}{{ $e }}{{ end }}'
+      {
+        find /var/log/ -type f \( -name 'lastlog' -o -name 'wtmp' -o -name 'btmp' \) -perm /g+x,o+wx -print
+        find /var/log/ -type f \( -name 'secure' -o -name 'auth*' -o -name 'syslog' -o -name 'messages' \) -perm /u+x,g+wx,o+rwx -print
+        find /var/log/ -type f \( -name 'SSSD' -o -name 'sssd' -o -name 'gdm*' \) -perm /ug+x,o+rwx -print
+      } | while IFS= read -r l_file; do
+        if [ -n "$l_ex" ] && printf '%s\n' "$l_file" | grep -Eq -- "$l_ex"; then
+          continue
+        fi
+        echo "FAIL: $l_file $(stat -c '%a %U %G' "$l_file")"
+      done
+      echo "scan_done"
     exit-status: 0
-    stdout: ['!/./']
+    stdout:
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

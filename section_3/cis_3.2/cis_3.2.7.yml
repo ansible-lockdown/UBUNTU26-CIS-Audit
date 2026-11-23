@@ -5,11 +5,22 @@
 command:
   unneeded_network_protocol_modules:
     title: 3.2.7 | Ensure unneeded network protocol kernel modules are not available
+    skip: {{ not .Vars.ubtu26cis_net_modules_unneeded }}
+    skip-reason: no site list of unneeded network modules (ubtu26cis_net_modules_unneeded empty); 3.2.1-3.2.6 cover the CIS examples
+    exec: |
+      l_conf="$(modprobe --showconfig 2>/dev/null)"
+      l_loaded="$(lsmod)"
+      for l_mod in {{ range .Vars.ubtu26cis_net_modules_unneeded }}'{{ . }}' {{ end }}; do
+        l_mod="$(printf '%s' "$l_mod" | tr '-' '_')"
+        printf '%s\n' "$l_loaded" | grep -Eq -- "^${l_mod}[[:space:]]" && echo "FAIL: $l_mod is loaded"
+        printf '%s\n' "$l_conf" | grep -Pq -- "^\s*install\s+${l_mod}\s+/bin/(false|true)\b" || echo "FAIL: $l_mod is not set to install /bin/false or /bin/true"
+        printf '%s\n' "$l_conf" | grep -Pq -- "^\s*blacklist\s+${l_mod}\b" || echo "FAIL: $l_mod is not blacklisted"
+      done
+      echo "scan_done"
     exit-status: 0
-    exec: |-
-      lsmod | awk '{print $1}' | grep -Ff <(find /lib/modules/"$(uname -r)"/kernel/net -type f -name '*.ko*' -printf '%f\n' 2>/dev/null | sed -E 's/\.ko(\.[xg]z|\.zst)?$//' | sort -u) || true
     stdout:
-    - '!/.+/'
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

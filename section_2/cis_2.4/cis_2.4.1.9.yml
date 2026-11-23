@@ -19,8 +19,12 @@ file:
     title: 2.4.1.9 | Ensure access to crontab is configured
     exists: true
     owner: root
-    group: root
-    mode: "0640"
+    group:
+      or:
+      - root
+      - crontab
+    mode:
+      match-regexp: '^0[0246][04]0$'
     meta:
       server: 1
       workstation: 1

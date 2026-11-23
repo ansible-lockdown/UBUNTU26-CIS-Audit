@@ -1,11 +1,12 @@
 ---
 
 {{ if .Vars.ubtu26cis_level_1 }}
-  {{ if .Vars.ubtu26cis_desktop_required }}
     {{ if .Vars.ubtu26cis_rule_1_7_1 }}
 file:
   gdm_banner:
     title: 1.7.1 | Ensure GDM login banner is configured
+    skip: {{ if (not .Vars.ubtu26cis_desktop_required) }}true{{ else }}false{{ end }}
+    skip-reason: ubtu26cis_desktop_required is false, no GNOME desktop on this host
     path: /etc/dconf/db/{{ .Vars.ubtu26cis_dconf_db_name }}.d/00-login-screen
     exists: true
     contents:
@@ -24,5 +25,4 @@ file:
       - CM-7
       - IA-5
     {{ end }}
-  {{ end }}
 {{ end }}

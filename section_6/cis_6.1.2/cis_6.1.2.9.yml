@@ -2,7 +2,6 @@
 
 {{ if .Vars.ubtu26cis_level_2 }}
   {{ if .Vars.ubtu26cis_rule_6_1_2_9 }}
-    {{ if not .Vars.ubtu26cis_system_is_log_server }}
 file:
   rsyslog_forward_gtls:
     path: /etc/rsyslog.d/40-forward.conf
@@ -12,6 +11,8 @@ file:
     - '/StreamDriver="gtls"/'
     - '/StreamDriverMode="1"/'
     - '/StreamDriverAuthMode="x509\/name"/'
+    skip: {{ if or (not .Vars.ubtu26cis_remote_log_server) .Vars.ubtu26cis_system_is_log_server }}true{{ else }}false{{ end }}
+    skip-reason: ubtu26cis_remote_log_server is not set, or ubtu26cis_system_is_log_server is true
     meta:
       server: 2
       workstation: 2
@@ -19,6 +20,5 @@ file:
       - 6.1.2.9
       NIST800-53R5:
       - AU-6
-    {{ end }}
   {{ end }}
 {{ end }}

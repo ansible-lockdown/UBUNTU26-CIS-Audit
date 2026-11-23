@@ -3,35 +3,37 @@
 {{ if .Vars.ubtu26cis_level_1 }}
   {{ if .Vars.ubtu26cis_rule_7_2_11 }}
 command:
-  dot_dir_perms:
-    title: 7.2.11 | Ensure local interactive user dot directories access is configured | dot directory permissions
-    exec: 'find /home/ -type d -name "\.*" ! -name ".ssh" -perm /g+w,o+rwx'
-    exit-status:
-      or:
-      - 0
-      - 1
+  dot_dir_access:
+    title: 7.2.11 | Ensure local interactive user dot directories access is configured
+    skip: {{ not (and .Vars.ubtu26cis_dotperm_ansiblemanaged .Vars.ubtu26cis_disruption_high) }}
+    skip-reason: ubtu26cis_dotperm_ansiblemanaged or ubtu26cis_disruption_high is false, the role does not change dot directory permissions
+    exec: |
+      l_valid="$(awk -F/ '$NF != "nologin" && /^\// {print}' /etc/shells)"
+      l_skip_root="{{ if .Vars.ubtu26cis_dotdir_include_root }}no{{ else }}yes{{ end }}"
+      awk -F: '{print $1 ":" $6 ":" $7}' /etc/passwd | while IFS=: read -r l_user l_home l_shell; do
+        [ "$l_skip_root" = yes ] && [ "$l_user" = root ] && continue
+        printf '%s\n' "$l_valid" | grep -qxF -- "$l_shell" || continue
+        [ -d "$l_home" ] || continue
+        case "$(findmnt -no FSTYPE --target "$l_home" 2>/dev/null)" in
+          nfs|nfs4|cifs|smbfs|smb3|fuse.sshfs|afs|ncpfs|glusterfs|ceph) continue ;;
+        esac
+        l_group="$(id -gn "$l_user")"
+        find "$l_home" -xdev -type d -name '.*' -print | while IFS= read -r l_file; do
+          set -- $(stat -Lc '%#a %U %G' "$l_file")
+          case "${l_file##*/}" in
+            .ssh) l_mask=0077 ;;
+            *) l_mask=0027 ;;
+          esac
+          [ $(( $1 & l_mask )) -eq 0 ] || echo "FAIL: $l_file mode is $1"
+          [ "$2" = "$l_user" ] || echo "FAIL: $l_file owner is $2, expected $l_user"
+          [ "$3" = "$l_group" ] || echo "FAIL: $l_file group is $3, expected $l_group"
+        done
+      done
+      echo "scan_done"
+    exit-status: 0
     stdout:
-    - '!/./'
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 7.2.11
-      NIST800-53R5:
-      - CM-1
-      - CM-2
-      - CM-6
-      - CM-7
-      - IA-5
-  dot_ssh_dir_perms:
-    title: 7.2.11 | Ensure local interactive user dot directories access is configured | .ssh directory permissions
-    exec: 'find /home/ -type d -name ".ssh" -perm /go+rwx'
-    exit-status:
-      or:
-      - 0
-      - 1
-    stdout:
-    - '!/./'
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

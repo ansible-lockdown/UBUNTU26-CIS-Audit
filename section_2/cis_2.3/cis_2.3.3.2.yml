@@ -16,6 +16,22 @@ file:
       CIS_ID: 2.3.3.2
       NIST800-53R5:
       - AU-8
+command:
+  chronyd_process_user:
+    title: 2.3.3.2 | Ensure chrony is running as user _chrony | chronyd process user
+    exec: |
+      ps -eo user=,comm= | awk '$2 == "chronyd" && $1 != "_chrony" {print "FAIL: chronyd is running as " $1}'
+      echo "scan_done"
+    exit-status: 0
+    stdout:
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.3.3.2
+      NIST800-53R5:
+      - AU-8
     {{ end }}
   {{ end }}
 {{ end }}

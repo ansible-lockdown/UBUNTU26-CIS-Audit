@@ -5,9 +5,14 @@
 command:
   root_only_uid_0:
     title: 5.4.2.1 | Ensure root is the only UID 0 account
-    exec: "awk -F: '($3 == 0) { print $1 }' /etc/passwd"
+    skip: {{ not .Vars.ubtu26cis_disruption_high }}
+    skip-reason: ubtu26cis_disruption_high is false, the role does not change existing accounts
+    exec: |
+      awk -F: '($3 == 0 && $1 == "root") {print "root_ok"} ($3 == 0 && $1 != "root") {print "FAIL: " $1}' /etc/passwd
     exit-status: 0
-    stdout: ['root']
+    stdout:
+    - '/^root_ok$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

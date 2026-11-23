@@ -1,4 +1,50 @@
-gossfile:
+---
+
+# Oldest syver this content needs; unknown top-level keys are errors
+syver-version: 0.20.0
+
+# Host facts that decide whether a test applies; the test is skipped with a reason when it does not
+# Partitions the role only checks when they exist (1.1.2.3 - 1.1.2.7 mount options)
+discovery:
+  mount:
+    /home:
+      register: home_mounted
+      exists: true
+    /var:
+      register: var_mounted
+      exists: true
+    /var/tmp:
+      register: var_tmp_mounted
+      exists: true
+    /var/log:
+      register: var_log_mounted
+      exists: true
+    /var/log/audit:
+      register: var_log_audit_mounted
+      exists: true
+  package:
+    # 1.5.7 /etc/default/apport is only checked when apport is installed
+    apport:
+      register: apport_installed
+      installed: true
+    # 1.7.7 WaylandEnable=false is only set when an X11 (Xorg) session is installed
+    xserver-xorg-core:
+      register: xorg_installed
+      installed: true
+    # 2.1.1 autofs.service is only checked for masked when autofs is installed
+    autofs:
+      register: autofs_installed
+      installed: true
+  # 7.1.10 opasswd files the benchmark says may not exist
+  file:
+    /etc/security/opasswd:
+      register: opasswd_exists
+      exists: true
+    /etc/security/opasswd.old:
+      register: opasswd_old_exists
+      exists: true
+
+syverfile:
 # Section 1
   {{ if .Vars.ubtu26cis_section1 }}
   section_1/*/*.yml: {}
@@ -22,10 +68,8 @@ gossfile:
   section_3/cis_3.2/*.yml: {}
   # IPv4 network kernel parameters
   section_3/cis_3.3.1/*.yml: {}
-  # IPv6 network kernel parameters
-    {{ if .Vars.ubtu26cis_ipv6_required }}
+  # IPv6 network kernel parameters, skipped with a reason when ubtu26cis_ipv6_required is false
   section_3/cis_3.3.2/*.yml: {}
-    {{ end }}
   {{ end }}
 
 # Section 4 - Host Based Firewall (UFW only)
